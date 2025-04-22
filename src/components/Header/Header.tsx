@@ -37,16 +37,16 @@ export default function Header() {
 
           <Link
             href="/connexion"
-            className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
+            className="bg-yellow-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
           >
             <FaUser className="mr-1 inline-block" /> Connection
           </Link>
-          <a
-            href="#"
-            className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
+          <Link
+            href="/inscription"
+            className="bg-blue-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
           >
             S'inscrire
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Navigation Toggle */}
@@ -93,16 +93,16 @@ export default function Header() {
             </a>
             <Link
               href="/connexion"
-              className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
+              className="bg-yellow-600 text-sm text-white px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
             >
               <FaUser className="mr-1 inline-block" /> Connection
             </Link>
-            <a
-              href="#"
-              className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
+            <Link
+              href="/inscription"
+              className="bg-blue-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
             >
               S'inscrire
-            </a>
+            </Link>
           </div>
         </div>
       )}
