@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
   const toggleMenu = () => {
@@ -27,20 +27,25 @@ export default function Header() {
           <a href="#" className="text-gray-800 hover:text-blue-700 font-medium">
             Programmes
           </a>
-          <a href="#" className="text-gray-800 hover:text-blue-700 font-medium">
-            À propos
-          </a>
+
           <a href="#" className="text-gray-800 hover:text-blue-700 font-medium">
             Admission
           </a>
           <a href="#" className="text-gray-800 hover:text-blue-700 font-medium">
             Contact
           </a>
+
+          <Link
+            href="/connexion"
+            className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
+          >
+            <FaUser className="mr-1 inline-block" /> Connection
+          </Link>
           <a
             href="#"
-            className="bg-blue-700 text-white px-4 py-2 rounded-button hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
+            className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
           >
-            Postuler maintenant
+            S'inscrire
           </a>
         </nav>
 
@@ -61,24 +66,19 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-lg py-4 px-6 absolute w-full">
           <div className=" items-center flex flex-col space-y-4">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="text-gray-800 hover:text-blue-700 font-medium"
             >
               Accueil
-            </a>
+            </Link>
             <a
               href="#"
               className="text-gray-800 hover:text-blue-700 font-medium"
             >
               Programmes
             </a>
-            <a
-              href="#"
-              className="text-gray-800 hover:text-blue-700 font-medium"
-            >
-              À propos
-            </a>
+
             <a
               href="#"
               className="text-gray-800 hover:text-blue-700 font-medium"
@@ -91,11 +91,17 @@ export default function Header() {
             >
               Contact
             </a>
+            <Link
+              href="/connexion"
+              className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
+            >
+              <FaUser className="mr-1 inline-block" /> Connection
+            </Link>
             <a
               href="#"
-              className="bg-blue-700 text-white px-4 py-2 rounded-button hover:bg-blue-800 transition duration-300 text-center whitespace-nowrap cursor-pointer"
+              className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
             >
-              Postuler maintenant
+              S'inscrire
             </a>
           </div>
         </div>
