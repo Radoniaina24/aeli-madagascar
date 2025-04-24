@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormPassContext } from "../context/SignupContext";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaPaperPlane } from "react-icons/fa";
 
 export default function ButtonNextPrev() {
   const {
@@ -38,10 +38,10 @@ export default function ButtonNextPrev() {
         ) : (
           <button
             type="submit"
-            className="bg-green-600 text-white px-6 py-2 rounded-button hover:bg-green-700 transition duration-300 whitespace-nowrap cursor-pointer"
+            className=" flex items-center bg-green-600 text-sm text-white px-6 py-2 rounded hover:bg-green-700 transition duration-300 whitespace-nowrap cursor-pointer"
           >
             Soumettre ma candidature
-            <i className="fas fa-paper-plane ml-2"></i>
+            <FaPaperPlane className="ml-2" />
           </button>
         )}
       </div>

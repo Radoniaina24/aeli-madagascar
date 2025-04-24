@@ -17,21 +17,23 @@ function FormPassProvider({ children }: { children: React.ReactNode }) {
     postalCode: "",
     country: "",
     // Parcours académique
-    dernierDiplome: "",
-    etablissement: "",
-    anneeObtention: "",
-    moyenneGenerale: "",
-    domaineEtudes: "",
+    lastDegree: "",
+    institution: "",
+    graduationYear: "",
+    overallGPA: "",
+    fieldOfStudy: "",
     // Choix du programme
-    programme: "",
-    periodeEtudes: "",
-    financement: "",
+    program: "",
+    studyPeriod: "",
+    funding: "",
     // Lettre de motivation
-    lettreMotivation: "",
+    coverLetter: "",
     // Documents
     cv: null,
-    diplomes: null,
-    lettresRecommandation: null,
+    cin: null,
+    degree: null,
+    birthCertificate: null,
+    certificateOfResidence: null,
     // Confirmation
     acceptConditions: false,
   });
@@ -43,7 +45,8 @@ function FormPassProvider({ children }: { children: React.ReactNode }) {
     setCurrentStep(currentStep - 1);
     window.scrollTo(0, 0);
   };
-  console.log(formData);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  // console.log(formData);
   return (
     <FormPassContext.Provider
       value={{
@@ -53,6 +56,8 @@ function FormPassProvider({ children }: { children: React.ReactNode }) {
         setFormData,
         nextStep,
         prevStep,
+        showSuccessModal,
+        setShowSuccessModal,
       }}
     >
       {children}
