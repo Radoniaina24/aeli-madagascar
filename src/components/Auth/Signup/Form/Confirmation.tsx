@@ -4,8 +4,9 @@ import { FaCheck } from "react-icons/fa";
 import ButtonNextPrev from "../ButtonPrevNext/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Modal from "../Modal/Modal";
 export default function Confirmation() {
-  const { formData, setFormData } = useFormPassContext();
+  const { formData, setFormData, setShowSuccessModal } = useFormPassContext();
 
   const initialvalues = {
     acceptConditions: false,
@@ -18,13 +19,15 @@ export default function Confirmation() {
         .required("Champ requis"),
     }),
     onSubmit: (values) => {
-      console.log("Formulaire soumis :", values);
+      // console.log("Formulaire soumis :", values);
       setFormData((prev: any) => ({ ...prev, ...values }));
+      setShowSuccessModal(true);
     },
   });
   //   console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit} autoComplete="off">
+      <Modal />
       <div className="space-y-6">
         <div className="bg-green-50 p-6 rounded-lg text-center">
           <div className="text-green-600 text-5xl mb-4">
@@ -205,27 +208,7 @@ export default function Confirmation() {
             </p>
           )}
         </div>
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-bold text-blue-800 mb-2">Prochaines étapes</h4>
-          <ol className="list-decimal pl-5 space-y-1 text-sm text-gray-700">
-            <li>
-              Vérification de votre dossier par notre équipe d'admission (3-5
-              jours ouvrables)
-            </li>
-            <li>
-              Notification par email de la recevabilité de votre candidature
-            </li>
-            <li>
-              Si votre dossier est retenu, invitation à un entretien (en
-              personne ou en ligne)
-            </li>
-            <li>Décision finale d'admission communiquée par email</li>
-            <li>
-              En cas d'admission, paiement des frais d'inscription pour
-              confirmer votre place
-            </li>
-          </ol>
-        </div>
+
         <ButtonNextPrev />
       </div>
     </form>

@@ -45,7 +45,7 @@ function FormPassProvider({ children }: { children: React.ReactNode }) {
     setCurrentStep(currentStep - 1);
     window.scrollTo(0, 0);
   };
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   // console.log(formData);
   return (
     <FormPassContext.Provider
