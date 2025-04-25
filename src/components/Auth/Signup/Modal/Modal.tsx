@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormPassContext } from "../context/SignupContext";
 import Link from "next/link";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaHome } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
 
 export default function Modal() {
@@ -42,9 +42,9 @@ export default function Modal() {
             <Link
               href="/"
               data-readdy="true"
-              className="bg-gray-200 text-gray-800 px-6 py-2 rounded hover:bg-gray-300 transition duration-300 whitespace-nowrap"
+              className="bg-gray-200 text-gray-800 px-6 py-2 rounded flex items-center hover:bg-gray-300 transition duration-300 whitespace-nowrap"
             >
-              <i className="fas fa-home mr-2"></i>
+              <FaHome className=" mr-2" />
               Retour à l'accueil
             </Link>
           </div>
