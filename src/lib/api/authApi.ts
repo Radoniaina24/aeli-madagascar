@@ -27,6 +27,26 @@ export const authAPI = createApi({
       },
       invalidatesTags: ["authentication"],
     }),
+    forgotPassword: builder.mutation({
+      query: (credentials) => {
+        return {
+          url: "/auth/forgot-password",
+          method: "POST",
+          body: credentials,
+        };
+      },
+      invalidatesTags: ["authentication"],
+    }),
+    resetPassword: builder.mutation({
+      query: ({ newPassword, resetToken }) => {
+        return {
+          url: `/auth/reset-password/${resetToken}`,
+          method: "POST",
+          body: { newPassword },
+        };
+      },
+      invalidatesTags: ["authentication"],
+    }),
     refreshToken: builder.query({
       query: () => {
         return {
@@ -61,4 +81,6 @@ export const {
   useGetUserQuery,
   useLogoutMutation,
   useRefreshTokenQuery,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
 } = authAPI;
