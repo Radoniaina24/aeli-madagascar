@@ -6,6 +6,7 @@ import { PiSignInBold } from "react-icons/pi";
 import Link from "next/link";
 import { useLoginMutation } from "@/lib/api/authApi";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 interface LoginFormProps {
   onLogin: () => void;
 }
@@ -20,13 +21,15 @@ export default function Login() {
   const [login] = useLoginMutation();
   const ErrorNotification = (msg: string) => toast.error(msg);
   const SuccessNotification = (msg: string) => toast.success(msg);
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmiting(true);
     try {
       const response = await login({ email, password }).unwrap();
       setIsSubmiting(false);
-      SuccessNotification("Connexion réussie");
+      // SuccessNotification("Connexion réussie");
+      router.push("/student");
     } catch (error: any) {
       ErrorNotification(error?.data?.message);
       setIsSubmiting(false);

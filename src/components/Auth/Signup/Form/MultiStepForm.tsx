@@ -37,7 +37,7 @@ export default function MultiStepForm() {
   return (
     <div className="min-h-screen  bg-gray-50">
       <div className="container mx-auto  px-4 py-10 flex flex-col lg:flex-row gap-8">
-        <div className="w-full lg:w-2.5/3 bg-white p-6 md:p-8 rounded-lg shadow-md">
+        <div className="w-full lg:w-2/3 bg-white p-6 md:p-8 rounded-lg shadow-md">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Candidature AELI Madagascar

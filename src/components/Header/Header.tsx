@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 import HeaderHome from "./HeaderHome";
 import HeaderRegister from "./HeaderRegister";
+import StudentHeader from "../Espace/student/Header/StudentHeader";
 
 export default function Header() {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ export default function Header() {
       return <HeaderRegister />;
     }
     if (isStudentPage) {
-      return <div>Header Student</div>;
+      return;
     }
     // Si on est sur la page d'accueil ou une page commençant par "/student"
     if (pathname === "/") {

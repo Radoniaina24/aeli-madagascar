@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import {
   FaBookOpen,
@@ -9,9 +10,12 @@ import {
   FaCog,
   FaTasks,
 } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 export default function Sidebar() {
+  const pathName = usePathname();
   const menuItems = [
+    { icon: <MdDashboard />, label: "Tableau de bord", href: "/student" },
     { icon: <FaBookOpen />, label: "Mes Cours", href: "/student/cours" },
     { icon: <FaCalendarAlt />, label: "Calendrier", href: "#" },
     { icon: <FaTasks />, label: "Devoirs", href: "#" },
@@ -34,11 +38,14 @@ export default function Sidebar() {
         <h3 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">
           Menu
         </h3>
+
         {menuItems.map((item, index) => (
           <Link
             key={index}
             href={item.href}
-            className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className={`${
+              pathName === item.href ? "bg-blue-100 text-blue-800" : ""
+            } flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors`}
           >
             {item.icon}
             <span>{item.label}</span>
