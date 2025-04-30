@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { ReduxProvider } from "@/redux/porvider";
+import Loading from "@/components/Loading/Loading";
 
 const inter = Montserrat({
   subsets: ["latin"],
@@ -25,7 +26,7 @@ export default function RootLayout({
       <body className={` ${inter.className}`}>
         <ReduxProvider>
           <Header />
-          {children}
+          <Loading>{children}</Loading>
           <Footer />
         </ReduxProvider>
       </body>

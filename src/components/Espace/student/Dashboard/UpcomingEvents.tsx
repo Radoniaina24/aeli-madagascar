@@ -39,8 +39,8 @@ export default function UpcomingEvents() {
       title: "Examen de mi-semestre - Mathématiques Avancées",
       timeLocation: "10:00 - 12:00 | Salle virtuelle A",
       colorScheme: {
-        bg: "bg-yellow-100 dark:bg-yellow-900",
-        text: "text-yellow-800 dark:text-yellow-200",
+        bg: "bg-blue-100 dark:bg-yellow-900",
+        text: "text-blue-800 dark:text-yellow-200",
       },
     },
     {
@@ -57,8 +57,8 @@ export default function UpcomingEvents() {
       title: "Date limite - Projet Python",
       timeLocation: "23:59 | Soumission en ligne",
       colorScheme: {
-        bg: "bg-green-100 dark:bg-green-900",
-        text: "text-green-800 dark:text-green-200",
+        bg: "bg-blue-100 dark:bg-green-900",
+        text: "text-blue-800 dark:text-green-200",
       },
     },
   ];
