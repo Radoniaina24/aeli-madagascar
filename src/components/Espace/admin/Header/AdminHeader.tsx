@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaHome } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CgProfile } from "react-icons/cg";
@@ -8,6 +8,7 @@ import { TbUserPentagon } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "@/redux/features/authSlice";
 import { useLogoutMutation } from "@/lib/api/authApi";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 interface StudentHeaderProps {
   toggleSidebar: () => void;
@@ -16,6 +17,7 @@ interface StudentHeaderProps {
 
 const menuItems = [
   { label: "Profil", href: "/student", icon: <TbUserPentagon /> },
+  { label: "Allez au site", href: "/", icon: <FaHome /> },
 ];
 
 export default function AdminHeader({

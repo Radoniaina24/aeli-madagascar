@@ -1,5 +1,5 @@
 import "../globals.css";
-import AuthGuard from "@/components/Auth/Guard/AuthGuard";
+import AdminGuard from "@/components/Auth/Guard/AuthGuardAdmin";
 import Admin from "@/components/Espace/admin";
 
 export const metadata = {
@@ -12,8 +12,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthGuard>
+    <AdminGuard>
       <Admin children={children} />
-    </AuthGuard>
+    </AdminGuard>
   );
 }

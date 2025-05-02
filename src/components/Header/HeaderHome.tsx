@@ -1,12 +1,16 @@
 "use client";
+import { selectUser } from "@/redux/features/authSlice";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
+import { useSelector } from "react-redux";
 export default function HeaderHome() {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const user = useSelector(selectUser);
+  // console.log(user);
   return (
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -34,19 +38,31 @@ export default function HeaderHome() {
           <a href="#" className="text-gray-800 hover:text-blue-700 font-medium">
             Contact
           </a>
-
-          <Link
-            href="/connexion"
-            className="bg-yellow-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
-          >
-            <FaUser className="mr-1 inline-block" /> Connection
-          </Link>
-          <Link
-            href="/inscription"
-            className="bg-blue-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
-          >
-            S'inscrire
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href={`${user.role === "admin" ? "/admin" : "/student"}`}
+                className="bg-green-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-green-800 transition duration-300 whitespace-nowrap cursor-pointer"
+              >
+                <FaUser className="mr-1 inline-block" /> Mon Compte
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/connexion"
+                className="bg-yellow-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-yellow-800 transition duration-300 whitespace-nowrap cursor-pointer"
+              >
+                <FaUser className="mr-1 inline-block" /> Connection
+              </Link>
+              <Link
+                href="/inscription"
+                className="bg-blue-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
+              >
+                S'inscrire
+              </Link>
+            </>
+          )}
         </nav>
 
         {/* Mobile Navigation Toggle */}

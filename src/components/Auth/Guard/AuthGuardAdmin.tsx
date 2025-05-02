@@ -12,7 +12,11 @@ import {
 import PreLoader from "@/components/PreLoader";
 import Loading from "@/components/Loading/Loading";
 
-export default function AuthGuard({ children }: { children: React.ReactNode }) {
+export default function AdminGuard({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { data, error, isLoading } = useGetUserQuery("");
   const dispatch = useDispatch();
   const router = useRouter();
@@ -36,7 +40,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
   // Redirection si l'utilisateur n'est pas admin
   useEffect(() => {
-    if (isAuthenticated && user && user.role !== "student") {
+    if (isAuthenticated && user && user.role !== "admin") {
       router.replace("/");
     }
   }, [isAuthenticated, user, router]);
@@ -45,7 +49,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     return <PreLoader />;
   }
 
-  if (user.role !== "student") {
+  if (user.role !== "admin") {
     return null; // On attend la redirection
   }
 

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useLoginMutation } from "@/lib/api/authApi";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 interface LoginFormProps {
   onLogin: () => void;
 }
@@ -27,9 +28,13 @@ export default function Login() {
     setIsSubmiting(true);
     try {
       const response = await login({ email, password }).unwrap();
+      const role = response?.role;
       setIsSubmiting(false);
-      // SuccessNotification("Connexion réussie");
-      router.push("/student");
+      if (role === "admin") {
+        return router.push("/admin");
+      } else {
+        return router.push("/student");
+      }
     } catch (error: any) {
       ErrorNotification(error?.data?.message);
       setIsSubmiting(false);
@@ -44,9 +49,16 @@ export default function Login() {
       <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              <span className="text-blue-600">E</span>-Learning
-            </h2>
+            <div className="flex justify-center">
+              <Image
+                src="https://res.cloudinary.com/dx3xhdaym/image/upload/v1746015465/admin_sxfcox.png"
+                width={180}
+                height={100}
+                alt="log"
+                className="rouded-full px-2"
+              />
+            </div>
+
             <p className="text-gray-600">Connectez-vous à votre compte</p>
           </div>
           {error && (
