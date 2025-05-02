@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetUserQuery } from "@/lib/api/authApi";
@@ -17,40 +17,45 @@ export default function AdminGuard({
 }: {
   children: React.ReactNode;
 }) {
-  const { data, error, isLoading } = useGetUserQuery("");
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { data, error, isLoading } = useGetUserQuery("");
 
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
 
-  // Mise à jour du user
+  const [checked, setChecked] = useState(false); // pour éviter les redirections prématurées
+
+  // Met à jour le store une fois que les données sont reçues
   useEffect(() => {
-    if (data) {
+    if (data?.user) {
       dispatch(setUser(data.user));
+      setChecked(true); // données chargées et utilisateur mis à jour
+    } else if (error) {
+      setChecked(true); // l'utilisateur n'est pas authentifié
     }
-  }, [data, dispatch]);
+  }, [data, error, dispatch]);
 
-  // Redirection si non authentifié
+  // Redirection en fonction du rôle après vérification complète
   useEffect(() => {
-    if (error) {
-      router.replace("/");
+    if (!isLoading && checked) {
+      if (!isAuthenticated || !user) {
+        router.replace("/");
+      } else if (user.role !== "admin") {
+        router.replace("/");
+      }
     }
-  }, [error, router]);
+  }, [checked, isAuthenticated, user, router, isLoading]);
 
-  // Redirection si l'utilisateur n'est pas admin
-  useEffect(() => {
-    if (isAuthenticated && user && user.role !== "admin") {
-      router.replace("/");
-    }
-  }, [isAuthenticated, user, router]);
-
-  if (isLoading || !isAuthenticated || !user) {
+  // Pendant chargement
+  if (isLoading || !checked) {
     return <PreLoader />;
   }
 
-  if (user.role !== "admin") {
-    return null; // On attend la redirection
+  // En attente de redirection
+  if (!user || user.role !== "admin") {
+    return null;
   }
 
   return <Loading>{children}</Loading>;

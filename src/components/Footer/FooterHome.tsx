@@ -13,7 +13,7 @@ export default function FooterHome() {
             </h3>
             <p className="text-blue-100 mb-4">
               Leader de l'enseignement supérieur en Afrique, formant les futurs
-              leaders et entrepreneurs du continent depuis 2010.
+              leaders et entrepreneurs du continent .
             </p>
             <div className="flex space-x-4">
               <a
@@ -105,18 +105,26 @@ export default function FooterHome() {
             <h3 className="text-xl font-bold mb-4 text-yellow-400">Contact</h3>
             <ul className="space-y-2">
               <li className="flex items-start">
-                <FaMapMarkerAlt className="mt-1 mr-3 text-yellow-400" />
+                <div>
+                  <FaMapMarkerAlt className="mt-1 mr-3 text-yellow-400" />
+                </div>
                 <span className="text-blue-100">
-                  123 Avenue de l'Indépendance, Antananarivo 101, Madagascar
+                  Nanisana, Antananarivo 101, Madagascar
                 </span>
               </li>
               <li className="flex items-center">
-                <FaPhone className="mr-3 text-yellow-400" />
-                <span className="text-blue-100">+261 20 22 123 456</span>
+                <div>
+                  <FaPhone className="mr-3 text-yellow-400" />
+                </div>
+                <span className="text-blue-100">+261 38 78 777 37</span>
               </li>
               <li className="flex items-center">
-                <FaEnvelope className="mr-3 text-yellow-400" />
-                <span className="text-blue-100">info@aelimadagascar.org</span>
+                <div>
+                  <FaEnvelope className="mr-3 text-yellow-400" />
+                </div>
+                <span className="text-blue-100">
+                  administration@aeli.africa
+                </span>
               </li>
             </ul>
           </div>
