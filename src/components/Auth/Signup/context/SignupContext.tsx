@@ -34,6 +34,8 @@ function FormPassProvider({ children }: { children: React.ReactNode }) {
     degree: null,
     birthCertificate: null,
     certificateOfResidence: null,
+    photo: null,
+    gradeTranscript: null, // Relevé de notes
     // Confirmation
     acceptConditions: false,
   });

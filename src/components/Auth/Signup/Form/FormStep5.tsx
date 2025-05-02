@@ -22,6 +22,8 @@ export default function FormStep5() {
     degree: formData.degree,
     birthCertificate: formData.birthCertificate,
     certificateOfResidence: formData.certificateOfResidence,
+    photo: formData.photo,
+    gradeTranscript: formData.gradeTranscript,
   };
 
   const formik = useFormik({
@@ -59,7 +61,30 @@ export default function FormStep5() {
         .test("fileSize", "Taille maximale 5MB", (file: any) =>
           file ? file.size <= 5 * 1024 * 1024 : false
         ),
-
+      gradeTranscript: Yup.mixed()
+        .required("Le relevé de notes  est requis")
+        .test("fileType", "Le fichier doit être un PDF", (file: any) =>
+          file ? file.type === "application/pdf" : false
+        )
+        .test("fileSize", "Taille maximale 5MB", (file: any) =>
+          file ? file.size <= 5 * 1024 * 1024 : false
+        ),
+      photo: Yup.mixed<File>()
+        .required("La photo récente est requise")
+        .test(
+          "fileType",
+          "Le fichier doit être une image (jpg, jpeg, png, webp)",
+          (file) =>
+            !!file &&
+            ["image/jpeg", "image/png", "image/webp", "image/jpg"].includes(
+              file.type
+            )
+        )
+        .test(
+          "fileSize",
+          "La taille maximale est de 5MB",
+          (file) => !!file && file.size <= 5 * 1024 * 1024
+        ),
       //   birthCertificate: Yup.string().required(
       //     "Bulletin de naissance est requis"
       //   ),
@@ -85,6 +110,19 @@ export default function FormStep5() {
   return (
     <form onSubmit={formik.handleSubmit} autoComplete="off">
       <div className="space-y-6">
+        <FileUpload
+          name="photo"
+          label="Photo récente"
+          value={formik.values.photo}
+          onChange={(e) => {
+            const file = e.currentTarget.files?.[0] || null;
+            setFieldValue("photo", file);
+          }}
+          error={formik.errors.photo}
+          touched={formik.touched.photo}
+          required
+          helperText="Format image uniquement (jpg, jpeg, png, webp), taille max: 5 MB"
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FileUpload
             name="cv"
@@ -141,19 +179,34 @@ export default function FormStep5() {
             helperText="Format PDF uniquement, taille max: 5 MB"
           />
         </div>
-        <FileUpload
-          name="birthCertificate"
-          label="Bulletin de naissance"
-          value={formik.values.birthCertificate}
-          onChange={(e) => {
-            const file = e.currentTarget.files?.[0] || null;
-            setFieldValue("birthCertificate", file);
-          }}
-          error={formik.errors.birthCertificate}
-          touched={formik.touched.birthCertificate}
-          required
-          helperText="Format PDF uniquement, taille max: 5 MB"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FileUpload
+            name="gradeTranscript"
+            label="Relevé de notes"
+            value={formik.values.gradeTranscript}
+            onChange={(e) => {
+              const file = e.currentTarget.files?.[0] || null;
+              setFieldValue("gradeTranscript", file);
+            }}
+            error={formik.errors.gradeTranscript}
+            touched={formik.touched.gradeTranscript}
+            required
+            helperText="Format PDF uniquement, taille max: 5 MB"
+          />
+          <FileUpload
+            name="birthCertificate"
+            label="Bulletin de naissancec (moins de 3 mois)"
+            value={formik.values.birthCertificate}
+            onChange={(e) => {
+              const file = e.currentTarget.files?.[0] || null;
+              setFieldValue("birthCertificate", file);
+            }}
+            error={formik.errors.birthCertificate}
+            touched={formik.touched.birthCertificate}
+            required
+            helperText="Format PDF uniquement, taille max: 5 MB"
+          />
+        </div>
       </div>
       <div className="bg-blue-50 p-4 rounded-lg">
         <h4 className="font-bold text-blue-800 mb-2">Documents requis</h4>

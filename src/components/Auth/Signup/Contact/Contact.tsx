@@ -10,13 +10,13 @@ export default function Contact() {
           <div className="bg-green-100 text-green-800 p-2 rounded-full mr-3">
             <FaPhoneAlt />
           </div>
-          <span>+261 20 22 123 456</span>
+          <span>+261 38 78 777 37</span>
         </li>
         <li className="flex items-center">
           <div className="bg-green-100 text-green-800 p-2 rounded-full mr-3">
             <FaEnvelope />
           </div>
-          <span>admissions@aelimadagascar.org</span>
+          <span>administration@aeli.africa</span>
         </li>
         <li className="flex items-center">
           <div className="bg-green-100 text-green-800 p-2 rounded-full mr-3">

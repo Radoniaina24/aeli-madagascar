@@ -31,7 +31,6 @@ export default function Confirmation() {
       try {
         const response = await registerCandidate(data).unwrap();
         setShowSuccessModal(true);
-        console.log(response);
       } catch (error: any) {
         if (error?.data?.message) {
           console.log(error);
@@ -163,6 +162,12 @@ export default function Confirmation() {
             <div className="p-4 space-y-2 text-sm">
               <div className="flex items-center">
                 <FaCheck
+                  className={` ${formData.photo ? " text-green-500 mr-2" : ""}`}
+                />
+                <span>Photo récente</span>
+              </div>
+              <div className="flex items-center">
+                <FaCheck
                   className={` ${formData.cv ? " text-green-500 mr-2" : ""}`}
                 />
                 <span>CV</span>
@@ -198,6 +203,14 @@ export default function Confirmation() {
                   }`}
                 />
                 <span>Certificat de résidence</span>
+              </div>
+              <div className="flex items-center">
+                <FaCheck
+                  className={` ${
+                    formData.gradeTranscript ? " text-green-500 mr-2" : ""
+                  }`}
+                />
+                <span>Relevé de notes</span>
               </div>
             </div>
           </div>

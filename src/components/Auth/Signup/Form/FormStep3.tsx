@@ -23,35 +23,21 @@ export default function FormStep3() {
 
   const course = [
     {
-      label: "Communication audiovisuelle et numérique",
-      value: "Communication audiovisuelle et numérique",
+      label: "BEL : Business, Entrepreneuriat et Leadership",
+      value: "BEL : Business, Entrepreneuriat et Leadership",
     },
+
     {
-      label: "Marketing Digital et Journalisme",
-      value: "Marketing Digital et Journalisme",
+      label: "BEN : BTP et Energie Renouvelable",
+      value: "BEN : BTP et Energie Renouvelable",
     },
-    {
-      label: "Technologie de l'informatique et de la télécommunication",
-      value: "Technologie de l'informatique et de la télécommunication",
-    },
-    {
-      label: "Droit",
-      value: "Droit",
-    },
-    { label: "Management", value: "Management" },
   ];
   const tuitionFees = [
     {
-      program: "Communication audiovisuelle et numérique",
-      fee: "5 500 000 Ar / an",
+      program: "Droit d'inscription",
+      fee: "300 000 MGA ",
     },
-    { program: "Marketing Digital et Journalisme", fee: "5 200 000 Ar / an" },
-    {
-      program: "Technologie de l'informatique et de la télécommunication",
-      fee: "5 800 000 Ar / an",
-    },
-    { program: "Droit", fee: "5 300 000 Ar / an" },
-    { program: "Management", fee: "5 400 000 Ar / an" },
+    { program: "Frais de formation annuelle", fee: "2 500 000 MGA" },
   ];
   const {
     setCurrentStep,
@@ -70,8 +56,8 @@ export default function FormStep3() {
     initialValues: initialvalues,
     validationSchema: Yup.object({
       program: Yup.string().required("Le choix du programme est requis"),
-      studyPeriod: Yup.string().required("La période d'études est requise"),
-      funding: Yup.string().required("Le mode de financement est requis"),
+      studyPeriod: Yup.string().required("Le choix du niveau est requis"),
+      funding: Yup.string().required("Le choix du  mention  est requis"),
     }),
 
     onSubmit: (values) => {
