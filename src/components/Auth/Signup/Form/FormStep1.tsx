@@ -33,11 +33,13 @@ export default function FormStep1() {
       lastName: Yup.string().required("Le nom est requis"),
       firstName: Yup.string().required("Le prénom est requis"),
       emailAddress: Yup.string()
-        .email("Invalid email")
+        .email("Email invalide")
         .required("L'email est requis"),
+
       confirmEmailAddress: Yup.string()
-        .email("Invalid email")
-        .required("L'email est requis"),
+        .oneOf([Yup.ref("emailAddress")], "Les emails doivent être identiques")
+        .required("La confirmation de l'email est requise"),
+
       phoneNumber: Yup.string().required("Le téléphone est requis"),
       dateOfBirth: Yup.string().required("La date de naissance est requise"),
       nationality: Yup.string().required("La nationalité est requise"),

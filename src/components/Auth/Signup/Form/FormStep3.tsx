@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormPassContext } from "../context/SignupContext";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -7,27 +7,51 @@ import ButtonNextPrev from "../ButtonPrevNext/Button";
 import FormSelect from "@/components/Form/FormSelect";
 export default function FormStep3() {
   const programs = [
-    { label: "Leadership et Management", value: "Leadership et Management" },
-    { label: "Entrepreneuriat Innovant", value: "Entrepreneuriat Innovant" },
-    { label: "Finance et Investissement", value: "Finance et Investissement" },
-    { label: "Marketing Digital", value: "Marketing Digital" },
-    { label: "Développement Durable", value: "Développement Durable" },
-    { label: "Commerce International", value: "Commerce International" },
+    { label: "Licence", value: "Licence" },
+    { label: "Master", value: "Master" },
   ];
-  const studyPeriods = [
-    { label: "Septembre 2025", value: "Septembre 2025" },
-    { label: "Janvier 2026", value: "Janvier 2026" },
-    { label: "Septembre 2026", value: "Septembre 2026" },
-  ];
-  const fundingOptions = [
-    { label: "Financement personnel", value: "Financement personnel" },
-    { label: "Bourse d'études", value: "Bourse d'études" },
+  const studyPeriodOptions: any = {
+    Licence: [
+      { label: "Licence 1", value: "Licence 1" },
+      { label: "Licence 2", value: "Licence 2" },
+    ],
+    Master: [
+      { label: "Master 1", value: "Master 1" },
+      { label: "Master 2", value: "Master 2" },
+    ],
+  };
+
+  const course = [
     {
-      label: "Financement par l'employeur",
-      value: "Financement par l'employeur",
+      label: "Communication audiovisuelle et numérique",
+      value: "Communication audiovisuelle et numérique",
     },
-    { label: "Prêt étudiant", value: "Prêt étudiant" },
-    { label: "Autre", value: "Autre" },
+    {
+      label: "Marketing Digital et Journalisme",
+      value: "Marketing Digital et Journalisme",
+    },
+    {
+      label: "Technologie de l'informatique et de la télécommunication",
+      value: "Technologie de l'informatique et de la télécommunication",
+    },
+    {
+      label: "Droit",
+      value: "Droit",
+    },
+    { label: "Management", value: "Management" },
+  ];
+  const tuitionFees = [
+    {
+      program: "Communication audiovisuelle et numérique",
+      fee: "5 500 000 Ar / an",
+    },
+    { program: "Marketing Digital et Journalisme", fee: "5 200 000 Ar / an" },
+    {
+      program: "Technologie de l'informatique et de la télécommunication",
+      fee: "5 800 000 Ar / an",
+    },
+    { program: "Droit", fee: "5 300 000 Ar / an" },
+    { program: "Management", fee: "5 400 000 Ar / an" },
   ];
   const {
     setCurrentStep,
@@ -56,39 +80,50 @@ export default function FormStep3() {
       setFormData((prev: any) => ({ ...prev, ...values }));
     },
   });
+  // Réinitialiser le champ studyPeriod quand le programme change
+  useEffect(() => {
+    const validOptions = studyPeriodOptions[formik.values.program] || [];
+    const isCurrentValid = validOptions.some(
+      (opt: any) => opt.value === formik.values.studyPeriod
+    );
+    if (!isCurrentValid) {
+      formik.setFieldValue("studyPeriod", "");
+    }
+  }, [formik.values.program]);
   //   console.log(formik.values);
   return (
     <form onSubmit={formik.handleSubmit} autoComplete="off">
       <FormSelect
         id="program"
-        label="Programme souhaité"
+        label="Obtenir un diplôme de :"
         value={formik.values.program}
         onChange={formik.handleChange}
         options={programs}
         error={formik.errors.program}
         touched={formik.touched.program}
-        placeholder="Sélectionnez un programme"
+        placeholder="Sélectionnez un diplôme"
         required
       />
       <FormSelect
         id="studyPeriod"
-        label="Sélectionnez une période"
+        label="Choix du niveau"
         value={formik.values.studyPeriod}
         onChange={formik.handleChange}
-        options={studyPeriods}
+        options={studyPeriodOptions[formik.values.program] || []}
         error={formik.errors.studyPeriod}
         touched={formik.touched.studyPeriod}
-        placeholder="Sélectionnez une période"
+        placeholder="Sélectionnez un niveau"
         required
       />
       <FormSelect
         id="funding"
-        label="Sélectionnez un mode de financement"
+        label="Mention"
         value={formik.values.funding}
         onChange={formik.handleChange}
-        options={fundingOptions}
+        options={course}
         error={formik.errors.funding}
         touched={formik.touched.funding}
+        placeholder="Sélectionnez une mention"
         required
       />
       <div className="bg-blue-50 p-4 rounded-lg">
@@ -96,30 +131,12 @@ export default function FormStep3() {
           Frais de scolarité indicatifs
         </h4>
         <ul className="space-y-2 text-sm text-gray-700">
-          <li className="flex justify-between">
-            <span>Leadership et Management</span>
-            <span className="font-semibold">5 500 000 Ar / an</span>
-          </li>
-          <li className="flex justify-between">
-            <span>Entrepreneuriat Innovant</span>
-            <span className="font-semibold">5 200 000 Ar / an</span>
-          </li>
-          <li className="flex justify-between">
-            <span>Finance et Investissement</span>
-            <span className="font-semibold">5 800 000 Ar / an</span>
-          </li>
-          <li className="flex justify-between">
-            <span>Marketing Digital</span>
-            <span className="font-semibold">5 300 000 Ar / an</span>
-          </li>
-          <li className="flex justify-between">
-            <span>Développement Durable</span>
-            <span className="font-semibold">5 400 000 Ar / an</span>
-          </li>
-          <li className="flex justify-between">
-            <span>Commerce International</span>
-            <span className="font-semibold">5 600 000 Ar / an</span>
-          </li>
+          {tuitionFees.map((item, index) => (
+            <li key={index} className="flex justify-between">
+              <span>{item.program}</span>
+              <span className="font-semibold">{item.fee}</span>
+            </li>
+          ))}
         </ul>
         <p className="mt-3 text-xs text-gray-500">
           * Ces montants sont donnés à titre indicatif et peuvent être sujets à

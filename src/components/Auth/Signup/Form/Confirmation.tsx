@@ -5,9 +5,10 @@ import ButtonNextPrev from "../ButtonPrevNext/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Modal from "../Modal/Modal";
+import { useRegisterCandidateMutation } from "@/lib/api/applicationApi";
 export default function Confirmation() {
   const { formData, setFormData, setShowSuccessModal } = useFormPassContext();
-
+  const [registerCandidate] = useRegisterCandidateMutation();
   const initialvalues = {
     acceptConditions: false,
   };
@@ -18,10 +19,32 @@ export default function Confirmation() {
         .oneOf([true], "Vous devez accepter les conditions pour continuer")
         .required("Champ requis"),
     }),
-    onSubmit: (values) => {
-      // console.log("Formulaire soumis :", values);
-      setFormData((prev: any) => ({ ...prev, ...values }));
-      setShowSuccessModal(true);
+    onSubmit: async (values, { setSubmitting }) => {
+      const data = new FormData();
+      Object.entries(formData).forEach(([key, value]: any) => {
+        if (value !== undefined && value !== "") {
+          data.append(key, value instanceof File ? value : String(value));
+        }
+      });
+      setSubmitting(true);
+
+      try {
+        const response = await registerCandidate(data).unwrap();
+        setShowSuccessModal(true);
+        console.log(response);
+      } catch (error: any) {
+        if (error?.data?.message) {
+          console.log(error);
+        } else {
+          console.log(error);
+        }
+      } finally {
+        setSubmitting(false);
+      }
+
+      // setFormData((prev: any) => ({ ...prev, ...values }));
+      // setShowSuccessModal(true);
+      // console.log("Formulaire soumis :", formData);
     },
   });
   //   console.log(formik.errors);
@@ -124,11 +147,11 @@ export default function Confirmation() {
                 <p className="font-medium">{formData.program || "-"}</p>
               </div>
               <div>
-                <p className="text-gray-500">Période d'études</p>
+                <p className="text-gray-500">Niveau</p>
                 <p className="font-medium">{formData.studyPeriod || "-"}</p>
               </div>
               <div>
-                <p className="text-gray-500">Mode de financement</p>
+                <p className="text-gray-500">Mention</p>
                 <p className="font-medium">{formData.funding || "-"}</p>
               </div>
             </div>
@@ -209,7 +232,7 @@ export default function Confirmation() {
           )}
         </div>
 
-        <ButtonNextPrev />
+        <ButtonNextPrev isSubmitting={formik.isSubmitting} />
       </div>
     </form>
   );

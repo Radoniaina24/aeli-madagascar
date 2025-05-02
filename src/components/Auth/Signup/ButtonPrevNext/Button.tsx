@@ -1,8 +1,13 @@
 import React from "react";
 import { useFormPassContext } from "../context/SignupContext";
 import { FaArrowLeft, FaArrowRight, FaPaperPlane } from "react-icons/fa";
+import { Loader2 } from "lucide-react";
 
-export default function ButtonNextPrev() {
+export default function ButtonNextPrev({
+  isSubmitting,
+}: {
+  isSubmitting?: boolean;
+}) {
   const {
     setCurrentStep,
     setFormData,
@@ -37,11 +42,18 @@ export default function ButtonNextPrev() {
           </button>
         ) : (
           <button
+            disabled={isSubmitting}
             type="submit"
-            className=" flex items-center bg-green-600 text-sm text-white px-6 py-2 rounded hover:bg-green-700 transition duration-300 whitespace-nowrap cursor-pointer"
+            className={`${
+              isSubmitting ? "cursor-not-allowed" : "cursor-pointer"
+            } flex items-center  text-sm  px-6 py-2   bg-green-600 text-white rounded hover:bg-green-700 transition duration-300 whitespace-nowrap `}
           >
             Soumettre ma candidature
-            <FaPaperPlane className="ml-2" />
+            {isSubmitting ? (
+              <Loader2 className="h-5 w-5 ml-2  animate-spin " />
+            ) : (
+              <FaPaperPlane className="ml-2 " />
+            )}
           </button>
         )}
       </div>
