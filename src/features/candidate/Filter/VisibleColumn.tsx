@@ -44,7 +44,7 @@ export default function VisibleColumn() {
   return (
     <div ref={menuRef} className="relative z-[99999]">
       <button
-        className="flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer whitespace-nowrap !rounded-button"
+        className="flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer whitespace-nowrap !rounded-button"
         onClick={() => setIsColumnMenuOpen(!isColumnMenuOpen)}
       >
         <span>Colonnes visibles</span>
@@ -56,7 +56,7 @@ export default function VisibleColumn() {
       </button>
 
       {isColumnMenuOpen && (
-        <div className="absolute right-0 top-full mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+        <div className="absolute right-0 top-full mt-2 w-56 rounded-md shadow-lg bg-white ring- ring-gray-200  ring-opacity-5 z-50">
           <div className="py-1" role="menu" aria-orientation="vertical">
             {Object.entries(visibleColumns).map(([column, isVisible]) => (
               <label
@@ -65,7 +65,7 @@ export default function VisibleColumn() {
               >
                 <input
                   type="checkbox"
-                  className="mr-2 h-4 w-4 text-blue-600 focus:ring-1 border-gray-300 rounded focus:ring-blue-500"
+                  className="mr-2 h-4 w-4 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
                   checked={isVisible as boolean}
                   onChange={() =>
                     handleColumnToggle(column as keyof typeof visibleColumns)

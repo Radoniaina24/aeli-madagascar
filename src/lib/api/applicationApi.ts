@@ -6,6 +6,16 @@ export const candidateAPI = createApi({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
   }),
   endpoints: (builder) => ({
+    getAllCandidate: builder.query({
+      query: (params) => {
+        return {
+          url: "/register",
+          method: "GET",
+          params,
+        };
+      },
+      providesTags: ["candidate"],
+    }),
     registerCandidate: builder.mutation({
       query: (credentials) => {
         return {
@@ -18,4 +28,5 @@ export const candidateAPI = createApi({
     }),
   }),
 });
-export const { useRegisterCandidateMutation } = candidateAPI;
+export const { useRegisterCandidateMutation, useGetAllCandidateQuery } =
+  candidateAPI;

@@ -1,20 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Filter from "./Filter/Filter";
+import Table from "./Table/Table";
 
 export default function Candidate() {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [statusFilter, setStatusFilter] = useState("tous");
-  const [visibleColumns, setVisibleColumns] = useState({
-    photo: true,
-    nom: true,
-    email: true,
-    statut: true,
-    role: true,
-    dateInscription: true,
-    actions: true,
-  });
-  const [isColumnMenuOpen, setIsColumnMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="px-4 sm:px-6 lg:px-6">
@@ -22,6 +11,7 @@ export default function Candidate() {
           {/* En-tête et filtres */}
           <Filter />
           {/* Tableau */}
+          <Table />
         </div>
       </div>
     </div>

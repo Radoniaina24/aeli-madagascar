@@ -3,6 +3,7 @@ import { selectUser } from "@/redux/features/authSlice";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
 import { useSelector } from "react-redux";
 export default function HeaderHome() {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
@@ -61,8 +62,9 @@ export default function HeaderHome() {
               </Link>
               <Link
                 href="/inscription"
-                className="bg-blue-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
+                className="bg-blue-700 flex items-center gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 whitespace-nowrap cursor-pointer"
               >
+                <IoMdAdd className="text-white" />
                 S'inscrire
               </Link>
             </>
