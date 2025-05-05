@@ -65,7 +65,7 @@ export default function AdminSidebar({ sidebarOpen }: SidebarProps) {
     {
       icon: <PiUsersThree className="text-xl text-pink-500" />,
       label: "Candidats",
-      href: "#",
+      href: "/admin/candidate",
     },
     // {
     //   icon: <BsCalendarCheckFill className="text-xl text-green-500" />,
