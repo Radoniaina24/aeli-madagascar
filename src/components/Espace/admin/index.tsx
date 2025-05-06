@@ -18,7 +18,7 @@ export default function Admin({ children }: { children: React.ReactNode }) {
           } transition-all duration-300 `}
         >
           <AdminHeader toggleSidebar={toggleSidebar} />
-          <div className="">{children}</div>
+          <div className="z-10">{children}</div>
         </main>
       </div>
     </div>

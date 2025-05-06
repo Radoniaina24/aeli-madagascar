@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 const CandidateContext = createContext<any | null>(null);
 function CandidateProvider({ children }: { children: React.ReactNode }) {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [statusFilter, setStatusFilter] = useState<string>("tous");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [isColumnMenuOpen, setIsColumnMenuOpen] = useState<boolean>(false);
   const [sortColumn, setSortColumn] = useState<string>("nom");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
@@ -35,7 +35,11 @@ function CandidateProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const { data, isLoading, error } = useGetAllCandidateQuery("");
+  const { data, isLoading, error } = useGetAllCandidateQuery({
+    search: searchTerm,
+    status: statusFilter,
+    sort: sortDirection,
+  });
   // console.log(data);
   return (
     <CandidateContext.Provider

@@ -28,12 +28,12 @@ export default function DesktopTable() {
   // console.log(users);
   return (
     <table className="min-w-full divide-y divide-gray-200 hidden md:table">
-      <thead className="bg-gray-50 sticky top-0 z-30">
+      <thead className="bg-gray-50 ">
         <tr>
           {visibleColumns.photo && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
             >
               Photo
             </th>
@@ -41,8 +41,8 @@ export default function DesktopTable() {
           {visibleColumns.nom && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-              onClick={() => handleSort("nom")}
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
+              // onClick={() => handleSort("nom")}
             >
               <div className="flex items-center">Nom</div>
             </th>
@@ -50,16 +50,16 @@ export default function DesktopTable() {
           {visibleColumns.prenom && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
               onClick={() => handleSort("nom")}
             >
-              <div className="flex items-center">Prénom</div>
+              {/* <div className="flex items-center">Prénom</div> */}
             </th>
           )}
           {visibleColumns.email && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
               onClick={() => handleSort("email")}
             >
               <div className="flex items-center">Email</div>
@@ -68,7 +68,7 @@ export default function DesktopTable() {
           {visibleColumns.diplome && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
             >
               <div className="flex items-center">Diplôme</div>
             </th>
@@ -76,7 +76,7 @@ export default function DesktopTable() {
           {visibleColumns.niveau && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
             >
               <div className="flex items-center">Niveau</div>
             </th>
@@ -84,7 +84,7 @@ export default function DesktopTable() {
           {visibleColumns.mention && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
             >
               <div className="flex items-center">Mention</div>
             </th>
@@ -92,7 +92,7 @@ export default function DesktopTable() {
           {visibleColumns.dateInscription && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
               onClick={() => handleSort("dateInscription")}
             >
               <div className="flex items-center">
@@ -109,7 +109,7 @@ export default function DesktopTable() {
           {visibleColumns.status && (
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider cursor-pointer"
             >
               <div className="flex items-center">Status</div>
             </th>
@@ -117,7 +117,7 @@ export default function DesktopTable() {
           {visibleColumns.actions && (
             <th
               scope="col"
-              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-black uppercase tracking-wider"
             >
               Actions
             </th>
@@ -200,7 +200,7 @@ export default function DesktopTable() {
               )}
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <div className="flex justify-between space-x-3.5 items-center">
+                  <div className="flex justify-between gap-3 items-center">
                     <ViewCandidate user={user} />
                     <EditCandidate user={user} />
                     <DeleteCandidate user={user} />

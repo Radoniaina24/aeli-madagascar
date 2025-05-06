@@ -11,9 +11,20 @@ export default function ViewCandidate({ user }: { user: any }) {
   // console.log(open);
   return (
     <div>
-      <button onClick={() => setOpen(true)}>
-        <FaEye className="w-5 h-5 text-green-500 text-sm cursor-pointer" />
-      </button>
+      <div className="hidden md:block">
+        <button onClick={() => setOpen(true)}>
+          <FaEye className="w-5 h-5 text-green-500 cursor-pointer" />
+        </button>
+      </div>
+
+      <div className="mt-4 md:hidden">
+        <button
+          onClick={() => setOpen(true)}
+          className="bg-green-100 flex items-center text-green-600 hover:bg-green-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+        >
+          <FaEye className="mr-1" /> Voir
+        </button>
+      </div>
       <Modal isOpen={open} title="Détails du candidat" onClose={handleClose}>
         <div className="space-y-4">
           <div className="border border-gray-200 rounded-lg overflow-hidden">

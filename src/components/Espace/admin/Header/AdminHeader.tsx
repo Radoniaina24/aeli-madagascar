@@ -55,7 +55,7 @@ StudentHeaderProps) {
 
   return (
     <header className="bg-white shadow sticky top-0 z-50">
-      <div className="px-5 md:px-8 py-5 flex items-center justify-between">
+      <div className="px-5 md:px-8 py-5 flex items-center justify-between ">
         <button
           onClick={toggleSidebar}
           className="mr-4 cursor-pointer rounded focus:outline-none"

@@ -106,3 +106,7 @@ body {
     rotate: 1080deg;
   }
 }
+
+.z-60 {
+  z-index: 60;
+}

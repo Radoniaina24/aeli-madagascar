@@ -74,7 +74,8 @@ export default function Sidebar({ sidebarOpen }: SidebarProps) {
     <aside
       className={`${
         sidebarOpen ? "w-64" : "w-16"
-      } shadow-sm transition-all duration-300 fixed h-full bg-white text-gray-600 z-5`}
+      } shadow-sm transition-all duration-300 fixed h-full bg-white text-gray-600 `}
+      style={{ zIndex: 99 }}
     >
       <div className="h-full pb-4 flex flex-col">
         <nav className="flex-1">

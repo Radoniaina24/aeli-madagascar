@@ -1,20 +1,22 @@
 "use client";
 import React from "react";
 import { useCandidateContext } from "../context/CandidateContext";
+import { FaSearch } from "react-icons/fa";
+import { div } from "framer-motion/client";
 interface SearchBarProps {
   placeholder?: string;
   className?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  placeholder = "Rechercher un utilisateur...",
+  placeholder = "Rechercher un candidat...",
   className = "",
 }) => {
   const { searchTerm, setSearchTerm } = useCandidateContext();
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className} `}>
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <i className="fas fa-search text-gray-400" />
+        <FaSearch className="text-gray-400" />
       </div>
       <input
         type="text"

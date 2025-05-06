@@ -2,6 +2,7 @@ import React from "react";
 import { useCandidateContext } from "../context/CandidateContext";
 import DesktopTable from "./DesktopTable";
 import Loading from "./Loading";
+import MobileTable from "./MobileTable";
 
 export default function Table() {
   const { isLoading } = useCandidateContext();
@@ -14,7 +15,14 @@ export default function Table() {
         maxHeight: "800px",
       }}
     >
-      {isLoading ? <Loading /> : <DesktopTable />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <DesktopTable />
+          <MobileTable />
+        </>
+      )}
     </div>
   );
 }
