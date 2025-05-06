@@ -26,7 +26,20 @@ export const candidateAPI = createApi({
       },
       invalidatesTags: ["candidate"],
     }),
+    deleteCandidate: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/register/${id}`,
+          method: "DELETE",
+          body: id,
+        };
+      },
+      invalidatesTags: ["candidate"],
+    }),
   }),
 });
-export const { useRegisterCandidateMutation, useGetAllCandidateQuery } =
-  candidateAPI;
+export const {
+  useRegisterCandidateMutation,
+  useGetAllCandidateQuery,
+  useDeleteCandidateMutation,
+} = candidateAPI;

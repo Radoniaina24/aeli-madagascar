@@ -42,7 +42,7 @@ export default function VisibleColumn() {
   }, [isColumnMenuOpen, setIsColumnMenuOpen]);
 
   return (
-    <div ref={menuRef} className="relative z-[99999]">
+    <div ref={menuRef} className="relative z-40">
       <button
         className="flex items-center justify-between w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer whitespace-nowrap !rounded-button"
         onClick={() => setIsColumnMenuOpen(!isColumnMenuOpen)}

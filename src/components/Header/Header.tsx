@@ -3,10 +3,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
-import HeaderHome from "./HeaderHome";
 import HeaderRegister from "./HeaderRegister";
 import StudentHeader from "../Espace/student/Header/StudentHeader";
-
+import dynamic from "next/dynamic";
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -14,7 +13,7 @@ export default function Header() {
 
   // Vérification si on est sur une page commençant par "/student"
   const isStudentPage = pathname.startsWith("/student");
-
+  const HeaderHome = dynamic(() => import("./HeaderHome"), { ssr: false });
   const renderHeader = () => {
     if (pathname === "/inscription") {
       return <HeaderRegister />;

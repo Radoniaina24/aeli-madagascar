@@ -11,7 +11,6 @@ export default function HeaderHome() {
     setIsMenuOpen(!isMenuOpen);
   };
   const user: any = useSelector(selectUser);
-  //  console.log(user);
   return (
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">

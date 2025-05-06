@@ -2,6 +2,8 @@ import React from "react";
 import { useCandidateContext } from "../context/CandidateContext";
 import { FaSortDown, FaSortUp } from "react-icons/fa";
 import dayjs from "dayjs";
+import ViewCandidate from "../Actions/ViewCandidate";
+import DeleteCandidate from "../Actions/DeleteCandidate";
 export default function DesktopTable() {
   const { visibleColumns, handleSort, sortColumn, sortDirection, data } =
     useCandidateContext();
@@ -22,7 +24,7 @@ export default function DesktopTable() {
     }
   };
   const users = data?.applications;
-  console.log(users);
+  // console.log(users);
   return (
     <table className="min-w-full divide-y divide-gray-200 hidden md:table">
       <thead className="bg-gray-50 sticky top-0 z-30">
@@ -195,37 +197,14 @@ export default function DesktopTable() {
                   </span>
                 </td>
               )}
-              {/* {visibleColumns.actions && (
+              {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <button
-                    className="text-green-600 hover:text-green-900 mr-3 cursor-pointer whitespace-nowrap !rounded-button"
-                    onClick={() => {
-                      setViewingUser(user);
-                      setIsViewModalOpen(true);
-                    }}
-                  >
-                    <i className="fas fa-eye"></i>
-                  </button>
-                  <button
-                    className="text-blue-600 hover:text-blue-900 mr-3 cursor-pointer whitespace-nowrap !rounded-button"
-                    onClick={() => {
-                      setEditingUser(user);
-                      setIsEditModalOpen(true);
-                    }}
-                  >
-                    <i className="fas fa-edit"></i>
-                  </button>
-                  <button
-                    className="text-red-600 hover:text-red-900 cursor-pointer whitespace-nowrap !rounded-button"
-                    onClick={() => {
-                      setUserToDelete(user);
-                      setIsDeleteModalOpen(true);
-                    }}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
+                  <div className="flex justify-between items-center">
+                    <ViewCandidate user={user} />
+                    <DeleteCandidate user={user} />
+                  </div>
                 </td>
-              )} */}
+              )}
             </tr>
           ))
         ) : (
