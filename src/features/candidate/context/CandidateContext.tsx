@@ -9,12 +9,12 @@ function CandidateProvider({ children }: { children: React.ReactNode }) {
   const [sortColumn, setSortColumn] = useState<string>("nom");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [visibleColumns, setVisibleColumns] = useState({
-    photo: true,
+    photo: false,
     nom: true,
     prenom: true,
     email: true,
     dateInscription: true,
-    diplome: true,
+    diplome: false,
     niveau: true,
     mention: true,
     actions: true,

@@ -36,10 +36,21 @@ export const candidateAPI = createApi({
       },
       invalidatesTags: ["candidate"],
     }),
+    updateCandidate: builder.mutation({
+      query: ({ status, id }) => {
+        return {
+          url: `/register/${id}`,
+          method: "PUT",
+          body: status,
+        };
+      },
+      invalidatesTags: ["candidate"],
+    }),
   }),
 });
 export const {
   useRegisterCandidateMutation,
   useGetAllCandidateQuery,
   useDeleteCandidateMutation,
+  useUpdateCandidateMutation,
 } = candidateAPI;

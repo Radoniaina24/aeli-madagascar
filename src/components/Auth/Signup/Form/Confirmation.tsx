@@ -244,7 +244,6 @@ export default function Confirmation() {
             </p>
           )}
         </div>
-
         <ButtonNextPrev isSubmitting={formik.isSubmitting} />
       </div>
     </form>

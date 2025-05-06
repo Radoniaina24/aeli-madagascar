@@ -4,6 +4,7 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 import dayjs from "dayjs";
 import ViewCandidate from "../Actions/ViewCandidate";
 import DeleteCandidate from "../Actions/DeleteCandidate";
+import EditCandidate from "../Actions/EditCandidate";
 export default function DesktopTable() {
   const { visibleColumns, handleSort, sortColumn, sortDirection, data } =
     useCandidateContext();
@@ -16,7 +17,7 @@ export default function DesktopTable() {
   const getStatusClass = (status: string) => {
     switch (status) {
       case "approved":
-        return "bg-green-500 text-white";
+        return "bg-green-500 text-gray-600";
       case "unapproved":
         return "bg-red-500 text-white";
       default:
@@ -199,8 +200,9 @@ export default function DesktopTable() {
               )}
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between space-x-3.5 items-center">
                     <ViewCandidate user={user} />
+                    <EditCandidate user={user} />
                     <DeleteCandidate user={user} />
                   </div>
                 </td>
