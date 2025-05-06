@@ -1,7 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Modal from "./Modal";
-import { FaExclamationTriangle, FaSpinner, FaTrashAlt } from "react-icons/fa";
+import {
+  FaExclamationTriangle,
+  FaSpinner,
+  FaTrash,
+  FaTrashAlt,
+} from "react-icons/fa";
 import { useDeleteCandidateMutation } from "@/lib/api/applicationApi";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -30,10 +35,14 @@ export default function DeleteCandidate({ user }: { user: any }) {
   }
   // console.log(isLoading);
   return (
-    <div>
+    <>
       <Toaster />
-      <button onClick={() => setOpen(true)}>
-        <FaTrashAlt className="w-4 h-4 text-md text-red-500 cursor-pointer" />
+      <button
+        className="bg-red-100 text-red-600 flex items-center gap-2 hover:bg-red-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+        onClick={() => setOpen(true)}
+      >
+        <FaTrash className="" />
+        <span className="md:hidden">Supprimer</span>
       </button>
       <Modal
         isOpen={open}
@@ -92,6 +101,6 @@ export default function DeleteCandidate({ user }: { user: any }) {
           </div>
         </div>
       </Modal>
-    </div>
+    </>
   );
 }

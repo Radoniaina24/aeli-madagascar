@@ -200,7 +200,7 @@ export default function DesktopTable() {
               )}
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <div className="flex justify-between gap-3 items-center">
+                  <div className="flex justify-between gap-1 items-center">
                     <ViewCandidate user={user} />
                     <EditCandidate user={user} />
                     <DeleteCandidate user={user} />

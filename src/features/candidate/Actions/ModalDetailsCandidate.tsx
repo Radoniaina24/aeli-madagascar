@@ -10,8 +10,12 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
-  // Fermeture avec touche Escape
+const ModalDetailsCandidate: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+}) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -38,7 +42,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
             style={{ zIndex: 110 }}
           />
 
-          {/* Modal */}
+          {/* Modal wrapper */}
           <motion.div
             className="fixed inset-0 flex items-center justify-center px-4 py-6 sm:px-0"
             initial={{ opacity: 0, y: -50 }}
@@ -47,26 +51,27 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
             style={{ zIndex: 130 }}
           >
             <div
-              className="bg-white w-full max-w-md sm:rounded-2xl shadow-lg relative overflow-hidden"
+              className="bg-white w-full max-w-[900px] sm:rounded-2xl shadow-lg relative max-h-[700px] flex flex-col overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
               <div
                 className={`flex items-center justify-between px-6 py-4 ${
                   title ? "border-b border-gray-200" : ""
-                } `}
+                }`}
               >
                 <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
                 <button
                   onClick={onClose}
                   className="text-gray-400 hover:text-gray-600 transition"
+                  aria-label="Fermer le modal"
                 >
-                  <MdCancelPresentation className="text-red-500 text-lg " />
+                  <MdCancelPresentation className="text-red-500 text-lg" />
                 </button>
               </div>
 
-              {/* Content */}
-              <div className="px-6 py-4">{children}</div>
+              {/* Scrollable Content */}
+              <div className="px-6 py-4 overflow-y-auto flex-1">{children}</div>
             </div>
           </motion.div>
         </>
@@ -76,4 +81,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   );
 };
 
-export default Modal;
+export default ModalDetailsCandidate;

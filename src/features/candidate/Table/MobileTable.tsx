@@ -132,37 +132,10 @@ export default function MobileTable() {
                 </ul>
               )}
               {visibleColumns.actions && (
-                <div className="mt-3 flex justify-end">
+                <div className="mt-4 gap-2 flex justify-end">
                   <ViewCandidate user={user} />
                   <EditCandidate user={user} />
                   <DeleteCandidate user={user} />
-                  {/* <button
-                    className="bg-green-100 flex items-center text-green-600 hover:bg-green-200 text-sm px-3 py-1 rounded-lg mr-2 cursor-pointer whitespace-nowrap"
-                    onClick={() => {
-                      // setViewingUser(user);
-                      // setIsViewModalOpen(true);
-                    }}
-                  >
-                    <FaEye className="mr-1" /> Voir
-                  </button>
-                  <button
-                    className="bg-blue-100 flex items-center text-blue-600 hover:bg-blue-200 text-sm px-3 py-1 rounded-lg mr-2 cursor-pointer whitespace-nowrap"
-                    onClick={() => {
-                      // setEditingUser(user);
-                      // setIsEditModalOpen(true);
-                    }}
-                  >
-                    <FaEdit className="mr-1" /> Modifier
-                  </button>
-                  <button
-                    className="bg-red-100 text-red-600 flex items-center hover:bg-red-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
-                    onClick={() => {
-                      // setUserToDelete(user);
-                      // setIsDeleteModalOpen(true);
-                    }}
-                  >
-                    <FaTrash className="mr-1" /> Supprimer
-                  </button> */}
                 </div>
               )}
             </div>
