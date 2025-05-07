@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useCandidateContext } from "../context/CandidateContext";
 import dayjs from "dayjs";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
@@ -7,8 +7,13 @@ import EditCandidate from "../Actions/EditCandidate";
 import DeleteCandidate from "../Actions/DeleteCandidate";
 
 export default function MobileTable() {
-  const { visibleColumns, handleSort, sortColumn, sortDirection, data } =
-    useCandidateContext();
+  const { visibleColumns, currentPage, data } = useCandidateContext();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [currentPage]); // 3. dépendance sur currentPage
   dayjs.locale("en");
   const formatDate = (
     isoDate: string | number | Date | dayjs.Dayjs | null | undefined
@@ -28,6 +33,7 @@ export default function MobileTable() {
   const users = data?.applications;
   return (
     <div
+      ref={scrollRef}
       className="md:hidden"
       style={{
         height: "calc(100vh - 300px)",
