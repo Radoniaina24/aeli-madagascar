@@ -74,10 +74,10 @@ export default function DesktopPagination() {
               <button
                 key={number}
                 onClick={() => paginate(number)}
-                className={`relative inline-flex items-center px-2.5 py-1 border text-xs font-medium ${
+                className={`relative inline-flex items-center px-3 py-1 border text-xs font-medium ${
                   currentPage === number
-                    ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
-                    : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+                    ? "z-10 bg-red-400 border-red-400 text-white"
+                    : "bg-white border-gray-300 text-gray-500 hover:bg-red-200 "
                 } cursor-pointer whitespace-nowrap !rounded-button`}
               >
                 {number}
