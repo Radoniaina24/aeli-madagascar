@@ -56,7 +56,7 @@ export default function VisibleColumn() {
       </button>
 
       {isColumnMenuOpen && (
-        <div className="absolute right-0 top-full mt-2 w-56 rounded-md shadow-lg bg-white ring- ring-gray-200  ring-opacity-5 z-50">
+        <div className="absolute right-0 top-full mt-2 w-56 rounded-md shadow-lg bg-white ring- ring-gray-200  ring-opacity-5 max-h-60 overflow-y-auto z-50">
           <div className="py-1" role="menu" aria-orientation="vertical">
             {Object.entries(visibleColumns).map(([column, isVisible]) => (
               <label

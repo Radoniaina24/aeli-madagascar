@@ -44,14 +44,14 @@ const ModalDetailsCandidate: React.FC<ModalProps> = ({
 
           {/* Modal wrapper */}
           <motion.div
-            className="fixed inset-0 flex items-center justify-center px-4 py-6 sm:px-0"
+            className="fixed inset-0 flex items-center justify-center px-4 py-6 sm:px-0 "
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             style={{ zIndex: 130 }}
           >
             <div
-              className="bg-white w-full max-w-[900px] sm:rounded-2xl shadow-lg relative max-h-[700px] flex flex-col overflow-hidden"
+              className="bg-white max-w-screen max-h-[80vh] sm:rounded-2xl shadow-lg relative  flex flex-col overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}

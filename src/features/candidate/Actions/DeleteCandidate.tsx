@@ -40,11 +40,10 @@ export default function DeleteCandidate({ user }: { user: any }) {
 
       <div className="hidden md:block">
         <button
-          className=" text-red-600 flex items-center gap-2  text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+          className=" text-red-600 flex items-center gap-2  text-sm px-1 py-1 rounded-lg cursor-pointer whitespace-nowrap"
           onClick={() => setOpen(true)}
         >
           <FaTrash className="" />
-          <span className="">Supprimer</span>
         </button>
       </div>
       <div className="md:hidden">

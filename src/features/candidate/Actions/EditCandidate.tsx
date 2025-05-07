@@ -66,11 +66,10 @@ export default function EditCandidate({ user }: { user: any }) {
 
       <div className="hidden md:block">
         <button
-          className=" flex items-center gap-2 text-blue-600  text-sm px-3 py-1 rounded-lg  cursor-pointer whitespace-nowrap"
+          className=" flex items-center gap-2 text-blue-600  text-sm px-2 py-1 rounded-lg  cursor-pointer whitespace-nowrap"
           onClick={() => setOpen(true)}
         >
           <FaEdit className="" />
-          <span className="">Modifier</span>
         </button>
       </div>
       <div className="md:hidden">

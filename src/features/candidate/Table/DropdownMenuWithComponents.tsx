@@ -36,7 +36,7 @@ const DropdownMenuWithComponents: React.FC<DropdownMenuProps> = ({
 
       {open && (
         <div
-          className=" z-[100] modal-container absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg  p-2 space-y-1"
+          className=" z-[95] modal-container absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg  p-2 space-y-1"
           onClick={(e) => e.stopPropagation()}
         >
           {children}

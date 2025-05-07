@@ -201,13 +201,11 @@ export default function DesktopTable() {
               )}
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <DropdownMenuWithComponents>
-                    <div className="flex flex-col items-center gap-1 ">
-                      <ViewCandidate user={user} />
-                      <EditCandidate user={user} />
-                      <DeleteCandidate user={user} />
-                    </div>
-                  </DropdownMenuWithComponents>
+                  <div className="flex  items-center  ">
+                    <ViewCandidate user={user} />
+                    <EditCandidate user={user} />
+                    <DeleteCandidate user={user} />
+                  </div>
                 </td>
               )}
             </tr>

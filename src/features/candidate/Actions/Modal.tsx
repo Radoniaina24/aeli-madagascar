@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdCancelPresentation } from "react-icons/md";
@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
         <>
           {/* Overlay */}
           <motion.div
-            className="fixed inset-0 bg-black/50 z-50"
+            className="fixed inset-0 bg-black/50 z-[96]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -40,11 +40,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
           {/* Modal */}
           <motion.div
-            className="fixed inset-0 flex items-center justify-center px-4 py-6 sm:px-0"
+            className="fixed inset-0 flex items-center justify-center px-4 py-6 sm:px-0 z-[130]"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            style={{ zIndex: 130 }}
           >
             <div
               className="bg-white w-full max-w-md sm:rounded-2xl shadow-lg relative overflow-hidden"
@@ -66,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
               </div>
 
               {/* Content */}
-              <div className="px-6 py-4">{children}</div>
+              <div className="px-6 py-4 ">{children}</div>
             </div>
           </motion.div>
         </>
