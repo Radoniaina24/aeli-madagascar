@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Filter from "./Filter/Filter";
 import Table from "./Table/Table";
+import Pagination from "./Pagination";
 
 export default function Candidate() {
   return (
@@ -11,8 +12,9 @@ export default function Candidate() {
           {/* En-tête et filtres */}
           <Filter />
           {/* Tableau */}
-
           <Table />
+          {/* Pagination */}
+          <Pagination />
         </div>
       </div>
     </div>

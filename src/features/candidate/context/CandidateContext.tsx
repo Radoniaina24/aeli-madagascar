@@ -1,6 +1,6 @@
 "use client";
 import { useGetAllCandidateQuery } from "@/lib/api/applicationApi";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 const CandidateContext = createContext<any | null>(null);
 function CandidateProvider({ children }: { children: React.ReactNode }) {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -20,6 +20,8 @@ function CandidateProvider({ children }: { children: React.ReactNode }) {
     actions: true,
     status: true,
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const handleColumnToggle = (column: keyof typeof visibleColumns) => {
     setVisibleColumns({
       ...visibleColumns,
@@ -34,13 +36,18 @@ function CandidateProvider({ children }: { children: React.ReactNode }) {
       setSortDirection("asc");
     }
   };
-
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, statusFilter]);
+  // Pagination
   const { data, isLoading, error } = useGetAllCandidateQuery({
     search: searchTerm,
     status: statusFilter,
     sort: sortDirection,
+    limit: itemsPerPage,
+    page: currentPage,
   });
-  // console.log(data);
+
   return (
     <CandidateContext.Provider
       value={{
@@ -61,6 +68,10 @@ function CandidateProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         data,
         error,
+        currentPage,
+        setCurrentPage,
+        itemsPerPage,
+        setItemsPerPage,
       }}
     >
       {children}

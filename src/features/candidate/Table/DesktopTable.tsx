@@ -29,7 +29,7 @@ export default function DesktopTable() {
   // console.log(users);
   return (
     <table className="min-w-full divide-y divide-gray-200 hidden md:table">
-      <thead className="bg-gray-50 ">
+      <thead className="bg-gray-50 sticky top-0 z-[95]">
         <tr>
           {visibleColumns.photo && (
             <th
@@ -202,7 +202,7 @@ export default function DesktopTable() {
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <DropdownMenuWithComponents>
-                    <div className="flex flex-col items-center gap-1 items-center">
+                    <div className="flex flex-col items-center gap-1 ">
                       <ViewCandidate user={user} />
                       <EditCandidate user={user} />
                       <DeleteCandidate user={user} />
