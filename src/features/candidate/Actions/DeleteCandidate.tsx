@@ -37,13 +37,25 @@ export default function DeleteCandidate({ user }: { user: any }) {
   return (
     <>
       <Toaster />
-      <button
-        className="bg-red-100 text-red-600 flex items-center gap-2 hover:bg-red-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
-        onClick={() => setOpen(true)}
-      >
-        <FaTrash className="" />
-        <span className="md:hidden">Supprimer</span>
-      </button>
+
+      <div className="hidden md:block">
+        <button
+          className=" text-red-600 flex items-center gap-2  text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+          onClick={() => setOpen(true)}
+        >
+          <FaTrash className="" />
+          <span className="">Supprimer</span>
+        </button>
+      </div>
+      <div className="md:hidden">
+        <button
+          className="bg-red-100 text-red-600 flex items-center gap-2 hover:bg-red-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+          onClick={() => setOpen(true)}
+        >
+          <FaTrash className="" />
+          <span className="">Supprimer</span>
+        </button>
+      </div>
       <Modal
         isOpen={open}
         // title="Confirmer la suppression"

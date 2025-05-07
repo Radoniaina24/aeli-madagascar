@@ -63,17 +63,25 @@ export default function EditCandidate({ user }: { user: any }) {
   return (
     <>
       <Toaster />
-      {/* <button onClick={() => setOpen(true)}>
-        <FaEdit className="w-4 h-4 text-md text-blue-500 cursor-pointer" />
-      </button> */}
 
-      <button
-        className="bg-blue-100 flex items-center gap-2 text-blue-600 hover:bg-blue-200 text-sm px-3 py-1 rounded-lg  cursor-pointer whitespace-nowrap"
-        onClick={() => setOpen(true)}
-      >
-        <FaEdit className="" />
-        <span className="md:hidden">Modifier</span>
-      </button>
+      <div className="hidden md:block">
+        <button
+          className=" flex items-center gap-2 text-blue-600  text-sm px-3 py-1 rounded-lg  cursor-pointer whitespace-nowrap"
+          onClick={() => setOpen(true)}
+        >
+          <FaEdit className="" />
+          <span className="">Modifier</span>
+        </button>
+      </div>
+      <div className="md:hidden">
+        <button
+          className="bg-blue-100 flex items-center gap-2 text-blue-600 hover:bg-blue-200 text-sm px-3 py-1 rounded-lg  cursor-pointer whitespace-nowrap"
+          onClick={() => setOpen(true)}
+        >
+          <FaEdit className="" />
+          <span className="">Modifier</span>
+        </button>
+      </div>
       <Modal
         isOpen={open}
         title={`${user.lastName} ${user.firstName}`}

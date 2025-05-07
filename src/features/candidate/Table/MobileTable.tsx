@@ -54,7 +54,7 @@ export default function MobileTable() {
                 <div className="mb-4 flex justify-center">
                   <img
                     className="h-20 w-20 rounded-full object-cover border-2 border-gray-200"
-                    src={user.photo}
+                    src={user.photo.url}
                     alt={`Photo de ${user.nom}`}
                     onError={(e) => {
                       e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(

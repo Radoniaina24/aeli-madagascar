@@ -21,12 +21,20 @@ const FileUpload: React.FC<FileUploadProps> = ({
   onChange,
   error,
   touched,
-  accept = ".pdf",
+  accept = ".pdf,.jpg,.jpeg,.png,.gif",
   required = false,
   helperText,
   maxSizeMB = 5,
 }) => {
-  //   console.log(touched);
+  const getFileIcon = (file: File) => {
+    const type = file.type;
+    if (type.includes("pdf")) return "fa-file-pdf text-red-500";
+    if (type.includes("image")) return "fa-file-image text-green-500";
+    return "fa-file text-gray-500";
+  };
+
+  const isFileTooLarge = value && value.size > maxSizeMB * 1024 * 1024;
+
   return (
     <div className="mb-4">
       <label
@@ -37,9 +45,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
       </label>
 
       <div
-        className={`border-2 border-dashed ${
+        className={`border-2 border-dashed rounded-lg p-6 text-center ${
           error && touched ? "border-red-500" : "border-gray-300"
-        } rounded-lg p-6 text-center`}
+        }`}
       >
         <input
           type="file"
@@ -51,20 +59,27 @@ const FileUpload: React.FC<FileUploadProps> = ({
         />
         <label htmlFor={name} className="cursor-pointer block">
           <div className="text-center">
-            <i className="fas fa-file-pdf text-blue-500 text-3xl mb-2"></i>
+            <i className="fas fa-upload text-blue-500 text-3xl mb-2"></i>
             <p className="text-sm text-gray-700 mb-1">
-              Cliquez pour télécharger votre fichier
+              Cliquez pour sélectionner un fichier (PDF ou image)
             </p>
             {helperText && (
               <p className="text-xs text-gray-500">{helperText}</p>
             )}
+            <p className="text-xs text-gray-400">Taille max : {maxSizeMB} Mo</p>
           </div>
         </label>
 
         {value && (
-          <div className="mt-3 flex items-center justify-center text-sm text-green-600">
-            <i className="fas fa-check-circle mr-2"></i>
-            <span>Fichier sélectionné : {value.name}</span>
+          <div className="mt-3 flex items-center justify-center text-sm">
+            <i className={`fas ${getFileIcon(value)} mr-2 text-lg`}></i>
+            <span
+              className={`${
+                isFileTooLarge ? "text-red-500" : "text-green-600"
+              }`}
+            >
+              {value.name} {isFileTooLarge && "(fichier trop volumineux)"}
+            </span>
           </div>
         )}
       </div>

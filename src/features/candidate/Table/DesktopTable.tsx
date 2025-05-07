@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import ViewCandidate from "../Actions/ViewCandidate";
 import DeleteCandidate from "../Actions/DeleteCandidate";
 import EditCandidate from "../Actions/EditCandidate";
+import DropdownMenuWithComponents from "./DropdownMenuWithComponents";
 export default function DesktopTable() {
   const { visibleColumns, handleSort, sortColumn, sortDirection, data } =
     useCandidateContext();
@@ -200,11 +201,13 @@ export default function DesktopTable() {
               )}
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <div className="flex justify-between gap-1 items-center">
-                    <ViewCandidate user={user} />
-                    <EditCandidate user={user} />
-                    <DeleteCandidate user={user} />
-                  </div>
+                  <DropdownMenuWithComponents>
+                    <div className="flex flex-col items-center gap-1 items-center">
+                      <ViewCandidate user={user} />
+                      <EditCandidate user={user} />
+                      <DeleteCandidate user={user} />
+                    </div>
+                  </DropdownMenuWithComponents>
                 </td>
               )}
             </tr>

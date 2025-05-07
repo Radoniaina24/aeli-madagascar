@@ -14,13 +14,24 @@ export default function ViewCandidate({ user }: { user: any }) {
   // console.log(open);
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="bg-green-100 flex gap-2 items-center text-green-600 hover:bg-green-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
-      >
-        <FaEye className="w-5 h-5 text-green-500 cursor-pointer" />
-        <span className="md:hidden">Voir</span>
-      </button>
+      <div className="hidden md:block">
+        <button
+          onClick={() => setOpen(true)}
+          className=" flex gap-2  items-center text-green-600 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+        >
+          <FaEye className="w-5 h-5 text-green-500 cursor-pointer" />
+          <span className="">Voir</span>
+        </button>
+      </div>
+      <div className="md:hidden">
+        <button
+          onClick={() => setOpen(true)}
+          className="bg-green-100 flex gap-2 items-center text-green-600 hover:bg-green-200 text-sm px-3 py-1 rounded-lg cursor-pointer whitespace-nowrap"
+        >
+          <FaEye className="w-5 h-5 text-green-500 cursor-pointer" />
+          <span className="">Voir</span>
+        </button>
+      </div>
 
       <ModalDetailsCandidate
         isOpen={open}
