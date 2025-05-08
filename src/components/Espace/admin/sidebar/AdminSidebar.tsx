@@ -2,25 +2,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { BsCalendarCheckFill } from "react-icons/bs";
-import {
-  FaAddressBook,
-  FaGraduationCap,
-  FaRegAddressBook,
-  FaRegUser,
-  FaTasks,
-} from "react-icons/fa";
-import {
-  IoBookOutline,
-  IoCalendarClearOutline,
-  IoHomeOutline,
-  IoPersonAddOutline,
-} from "react-icons/io5";
-import {
-  MdOutlinePlayLesson,
-  MdOutlineLibraryBooks,
-  MdOutlineHistoryEdu,
-} from "react-icons/md";
+
+import { FaRegAddressBook, FaRegUser } from "react-icons/fa";
+import { IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Image from "next/image";
 import { PiUsersThree } from "react-icons/pi";
@@ -78,7 +62,7 @@ export default function AdminSidebar({ sidebarOpen }: SidebarProps) {
     <aside
       className={`${
         sidebarOpen ? "w-64" : "w-16"
-      } shadow-sm transition-all duration-300 fixed h-full bg-white text-gray-600`}
+      } hidden lg:block shadow-sm transition-all duration-300 fixed h-full bg-white text-gray-600`}
       style={{ zIndex: 99 }}
     >
       <div className="h-full pb-4 flex flex-col">
