@@ -12,6 +12,8 @@ import {
 import PreLoader from "@/components/PreLoader";
 import Loading from "@/components/Loading/Loading";
 
+const allowedRoles = ["admin", "super_admin"];
+
 export default function AdminGuard({
   children,
 }: {
@@ -21,42 +23,40 @@ export default function AdminGuard({
   const dispatch = useDispatch();
 
   const { data, error, isLoading } = useGetUserQuery("");
-
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
 
   const [checked, setChecked] = useState(false); // pour éviter les redirections prématurées
 
-  // Met à jour le store une fois que les données sont reçues
+  // Met à jour le store utilisateur dès que les données sont prêtes
   useEffect(() => {
     if (data?.user) {
       dispatch(setUser(data.user));
-      setChecked(true); // données chargées et utilisateur mis à jour
-    } else if (error) {
-      setChecked(true); // l'utilisateur n'est pas authentifié
     }
+    setChecked(true); // que l'on ait une erreur ou pas, on a "terminé" la vérification
   }, [data, error, dispatch]);
 
-  // Redirection en fonction du rôle après vérification complète
+  // Redirection selon l'état d'authentification et le rôle
   useEffect(() => {
     if (!isLoading && checked) {
-      if (!isAuthenticated || !user) {
-        router.replace("/");
-      } else if (user.role !== "admin") {
+      const hasValidRole = user && allowedRoles.includes(user.role);
+      if (!isAuthenticated || !hasValidRole) {
         router.replace("/");
       }
     }
-  }, [checked, isAuthenticated, user, router, isLoading]);
+  }, [checked, isLoading, isAuthenticated, user, router]);
 
-  // Pendant chargement
+  // Affiche le préloader pendant la vérification
   if (isLoading || !checked) {
     return <PreLoader />;
   }
 
-  // En attente de redirection
-  if (!user || user.role !== "admin") {
+  // Ne rien afficher si l'utilisateur est en redirection
+  const hasValidRole = user && allowedRoles.includes(user.role);
+  if (!user || !hasValidRole) {
     return null;
   }
 
+  // Accès autorisé
   return <Loading>{children}</Loading>;
 }

@@ -11,6 +11,7 @@ import Image from "next/image";
 interface LoginFormProps {
   onLogin: () => void;
 }
+const allowedRoles = ["admin", "super_admin"];
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,15 +30,22 @@ export default function Login() {
     try {
       const response = await login({ email, password }).unwrap();
       const role = response?.role;
-      setIsSubmiting(false);
-      if (role === "admin") {
-        return router.push("/admin");
-      } else {
-        return router.push("/student");
+
+      switch (role) {
+        case "admin":
+        case "super_admin":
+          router.push("/admin");
+          break;
+        case "student":
+          router.push("/student");
+          break;
+        default:
+          ErrorNotification("Rôle utilisateur non reconnu");
+          break;
       }
     } catch (error: any) {
-      ErrorNotification(error?.data?.message);
-      setIsSubmiting(false);
+      const message = error?.data?.message || "Une erreur est survenue";
+      ErrorNotification(message);
     } finally {
       setIsSubmiting(false);
     }
