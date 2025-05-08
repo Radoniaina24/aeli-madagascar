@@ -1,6 +1,11 @@
 import React from "react";
 import { useCandidateContext } from "../context/CandidateContext";
-import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import {
+  FaChevronCircleLeft,
+  FaChevronCircleRight,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 
 export default function DesktopPagination() {
   const { setItemsPerPage, setCurrentPage, itemsPerPage, currentPage, data } =
@@ -48,21 +53,22 @@ export default function DesktopPagination() {
         </div>
       </div>
       <nav
-        className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+        className="relative z-0 inline-flex  -space-x-px"
         aria-label="Pagination"
       >
         <button
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`relative inline-flex items-center px-1.5 py-1 rounded-l-md border border-gray-300 text-xs font-medium ${
+          className={`relative inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-sm font-medium transition-colors duration-200 ${
             currentPage === 1
               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-white text-gray-500 hover:bg-gray-50"
-          } cursor-pointer whitespace-nowrap !rounded-button`}
+              : "bg-slate-600 text-white hover:bg-slate-700"
+          }`}
         >
           <span className="sr-only">Précédent</span>
-          <FaChevronCircleLeft className="h-4 w-4" />
+          <FaChevronLeft className="text-sm" />
         </button>
+
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => {
           // Afficher seulement les pages proches de la page actuelle
           if (
@@ -74,11 +80,11 @@ export default function DesktopPagination() {
               <button
                 key={number}
                 onClick={() => paginate(number)}
-                className={`relative inline-flex items-center px-3 py-1 border text-xs font-medium ${
+                className={`relative inline-flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-colors duration-200 mx-1 ${
                   currentPage === number
-                    ? "z-10 bg-red-400 border-red-400 text-white"
-                    : "bg-white border-gray-300 text-gray-500 hover:bg-red-200 "
-                } cursor-pointer whitespace-nowrap !rounded-button`}
+                    ? "z-10 bg-slate-800 text-white border border-transparent"
+                    : "border border-slate-300 text-slate-600 hover:text-white hover:bg-slate-800"
+                }`}
               >
                 {number}
               </button>
@@ -90,7 +96,7 @@ export default function DesktopPagination() {
             return (
               <span
                 key={number}
-                className="relative inline-flex items-center px-2.5 py-1 border border-gray-300 bg-white text-xs font-medium text-gray-700"
+                className="relative inline-flex items-center px-3 py-1 rounded-full border-gray-300 bg-white text-sm font-medium text-gray-700"
               >
                 ...
               </span>
@@ -101,15 +107,14 @@ export default function DesktopPagination() {
         <button
           onClick={() => paginate(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`relative inline-flex items-center px-1.5 py-1 rounded-r-md border border-gray-300 text-xs font-medium ${
+          className={`relative inline-flex items-center justify-center w-8 h-8  rounded-full border border-gray-300 text-sm font-medium transition-colors duration-200 ${
             currentPage === totalPages
               ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-              : "bg-white text-gray-500 hover:bg-gray-50"
-          } cursor-pointer whitespace-nowrap !rounded-button`}
+              : "bg-slate-600 text-white hover:bg-slate-700"
+          }`}
         >
           <span className="sr-only">Suivant</span>
-
-          <FaChevronCircleRight className="h-4 w-4" />
+          <FaChevronRight className="text-sm" />
         </button>
       </nav>
     </div>
