@@ -8,7 +8,7 @@ export default function Table() {
   const { isLoading } = useCandidateContext();
   return (
     <div
-      className="overflow-y-auto w-full"
+      className="overflow-y-auto overflow-x-auto "
       style={{
         height: "calc(100vh - 300px)",
         minHeight: "400px",

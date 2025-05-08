@@ -61,7 +61,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       {sidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-[150] flex">
           <aside
-            className={`shadow-sm transition-all duration-300 fixed h-full bg-white text-gray-600 w-64`}
+            className={`shadow-sm  duration-300 -translate-x-ful transition-transform sm:translate-x-0 fixed h-screen bg-white text-gray-600 w-64`}
             style={{ zIndex: 99 }}
           >
             <div className="h-full pb-4 flex flex-col">
