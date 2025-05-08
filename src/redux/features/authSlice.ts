@@ -1,12 +1,19 @@
 import { authAPI } from "@/lib/api/authApi";
 import { RootState } from "../store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+interface Student {
+  photo: {
+    url: string;
+  };
+  studyPeriod: string; // Exemple : "Licence 2"
+}
 interface User {
   id: string;
   lastName: string;
   firstName: string;
   email: string;
   role: string;
+  student: Student;
   // Ajoutez d'autres propriétés selon votre modèle utilisateur
 }
 interface AuthState {

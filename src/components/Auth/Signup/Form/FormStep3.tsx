@@ -12,12 +12,13 @@ export default function FormStep3() {
   ];
   const studyPeriodOptions: any = {
     Licence: [
-      { label: "Licence 1", value: "Licence 1" },
-      { label: "Licence 2", value: "Licence 2" },
+      { label: "L1", value: "L1" },
+      { label: "L2", value: "L2" },
+      { label: "L3", value: "L3" },
     ],
     Master: [
-      { label: "Master 1", value: "Master 1" },
-      { label: "Master 2", value: "Master 2" },
+      { label: "M1", value: "M1" },
+      { label: "M2", value: "M2" },
     ],
   };
 
@@ -37,7 +38,7 @@ export default function FormStep3() {
       program: "Droit d'inscription",
       fee: "300 000 MGA ",
     },
-    { program: "Frais de formation annuelle", fee: "2 500 000 MGA" },
+    { program: "Frais de formation annuelle (10 mois)", fee: "2 500 000 MGA" },
   ];
   const {
     setCurrentStep,
