@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { useCandidateContext } from "../context/CandidateContext";
+
 import dayjs from "dayjs";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import ViewCandidate from "../Actions/ViewCandidate";
-import EditCandidate from "../Actions/EditCandidate";
-import DeleteCandidate from "../Actions/DeleteCandidate";
+import { useUsersContext } from "../context/UsersContext";
+import ViewUserCandidate from "../Actions/ViewUserCandidate";
+import EditUserCandidate from "../Actions/EditUserCandidate";
+import DeleteUserCandidate from "../Actions/DeleteUserCandidate";
 
 export default function MobileTable() {
-  const { visibleColumns, currentPage, data } = useCandidateContext();
+  const { visibleColumns, currentPage, data } = useUsersContext();
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (scrollRef.current) {
@@ -22,9 +23,9 @@ export default function MobileTable() {
   };
   const getStatusClass = (status: string) => {
     switch (status) {
-      case "approved":
+      case "paid":
         return "bg-green-500 text-gray-600";
-      case "unapproved":
+      case "unpaid":
         return "bg-red-500 text-white";
       default:
         return "bg-blue-100 text-blue-800";
@@ -131,9 +132,9 @@ export default function MobileTable() {
                 {user.status === "unapproved" ? (
                   <>
                     {" "}
-                    <ViewCandidate user={user} />
-                    <EditCandidate user={user} />
-                    <DeleteCandidate user={user} />
+                    <ViewUserCandidate user={user} />
+                    <EditUserCandidate user={user} />
+                    <DeleteUserCandidate user={user} />
                   </>
                 ) : (
                   ""

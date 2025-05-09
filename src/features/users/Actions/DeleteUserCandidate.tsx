@@ -7,11 +7,13 @@ import {
   FaTrash,
   FaTrashAlt,
 } from "react-icons/fa";
-import { useDeleteCandidateMutation } from "@/lib/api/applicationApi";
-import toast, { Toaster } from "react-hot-toast";
 
-export default function DeleteCandidate({ user }: { user: any }) {
-  const [deleteCandidate, { isLoading, error }] = useDeleteCandidateMutation();
+import toast, { Toaster } from "react-hot-toast";
+import { useDeleteUserCandidateMutation } from "@/lib/api/userApi";
+
+export default function DeleteUserCandidate({ user }: { user: any }) {
+  const [deleteUserCandidate, { isLoading, error }] =
+    useDeleteUserCandidateMutation();
   const ErrorNotification = (msg: string) => toast.error(msg);
   const SuccessNotification = (msg: string) => toast.success(msg);
   const [open, setOpen] = useState<boolean>(false);
@@ -20,7 +22,8 @@ export default function DeleteCandidate({ user }: { user: any }) {
   };
   async function handleDelete(id: string) {
     try {
-      const response = await deleteCandidate(id).unwrap();
+      const response = await deleteUserCandidate(id).unwrap();
+      console.log(response);
       SuccessNotification(response?.message);
       setOpen(false);
     } catch (error: any) {
@@ -33,7 +36,7 @@ export default function DeleteCandidate({ user }: { user: any }) {
       }
     }
   }
-  // console.log(isLoading);
+
   return (
     <>
       <Toaster />
@@ -68,7 +71,7 @@ export default function DeleteCandidate({ user }: { user: any }) {
             Confirmer la suppression
           </h3>
           <p className="text-sm text-gray-500 mb-6">
-            Êtes-vous sûr de vouloir supprimer le candidat{" "}
+            Êtes-vous sûr de vouloir supprimer l'utilisateur{" "}
             <span className="font-medium">
               "{user.lastName} {user.firstName}"
             </span>{" "}

@@ -1,3 +1,4 @@
+import { useDeleteCandidateMutation } from "@/lib/api/applicationApi";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const usersAPI = createApi({
@@ -68,20 +69,11 @@ export const usersAPI = createApi({
       },
       invalidatesTags: ["user"],
     }),
-    updateUser: builder.mutation({
-      query: ({ user, id }) => {
-        return {
-          url: `/users/update/${id}`,
-          method: "PUT",
-          body: user,
-        };
-      },
-      invalidatesTags: ["user"],
-    }),
-    deleteUser: builder.mutation({
+
+    deleteUserCandidate: builder.mutation({
       query: (id) => {
         return {
-          url: `/users/delete/${id}`,
+          url: `/user/candidate/${id}`,
           method: "DELETE",
           body: id,
         };
@@ -95,9 +87,8 @@ export const {
   useGetUserQuery,
   useGetUserByIdQuery,
   useAddUserMutation,
-  useDeleteUserMutation,
-  useUpdateUserMutation,
   useGetAllUserQuery,
   useGetAllUserCandidateQuery,
   useUpdateUserCandidateMutation,
+  useDeleteUserCandidateMutation,
 } = usersAPI;

@@ -36,18 +36,19 @@ function CandidateProvider({ children }: { children: React.ReactNode }) {
       setSortDirection("asc");
     }
   };
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, statusFilter]);
+
   // Pagination
-  const { data, isLoading, error } = useGetAllCandidateQuery({
+  const { data, isLoading, error, refetch } = useGetAllCandidateQuery({
     search: searchTerm,
     status: statusFilter,
     sort: sortDirection,
     limit: itemsPerPage,
     page: currentPage,
   });
-
+  useEffect(() => {
+    setCurrentPage(1);
+    refetch();
+  }, [searchTerm, statusFilter]);
   return (
     <CandidateContext.Provider
       value={{

@@ -4,6 +4,8 @@ import { FaSortDown, FaSortUp } from "react-icons/fa";
 import dayjs from "dayjs";
 import { useUsersContext } from "../context/UsersContext";
 import EditUserCandidate from "../Actions/EditUserCandidate";
+import ViewUserCandidate from "../Actions/ViewUserCandidate";
+import DeleteUserCandidate from "../Actions/DeleteUserCandidate";
 
 export default function DesktopTable() {
   const { visibleColumns, handleSort, sortColumn, sortDirection, data } =
@@ -186,9 +188,9 @@ export default function DesktopTable() {
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex  items-center  ">
-                    {/* <ViewCandidate user={user} /> */}
+                    <ViewUserCandidate user={user} />
                     <EditUserCandidate user={user} />
-                    {/* <DeleteCandidate user={user} /> */}
+                    <DeleteUserCandidate user={user} />
                   </div>
                 </td>
               )}
