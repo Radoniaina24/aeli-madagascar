@@ -16,6 +16,7 @@ export default function DesktopPagination() {
       setCurrentPage(pageNumber);
     }
   };
+  console.log(results);
   return (
     <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between ">
       <div>
@@ -26,8 +27,7 @@ export default function DesktopPagination() {
             {" "}
             {indexOfLastItem > results ? results : indexOfLastItem}
           </span>{" "}
-          sur <span className="font-medium"> {data?.totalApplications} </span>{" "}
-          résultats
+          sur <span className="font-medium"> {results} </span> résultats
         </p>
       </div>
       <div>

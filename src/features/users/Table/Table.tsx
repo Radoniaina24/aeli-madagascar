@@ -3,6 +3,7 @@ import React from "react";
 import DesktopTable from "./DesktopTable";
 import Loading from "./Loading";
 import { useUsersContext } from "../context/UsersContext";
+import MobileTable from "./MobileTable";
 export default function Table() {
   const { isLoading } = useUsersContext();
   return (
@@ -19,6 +20,7 @@ export default function Table() {
       ) : (
         <>
           <DesktopTable />
+          <MobileTable />
         </>
       )}
     </div>

@@ -31,7 +31,7 @@ export default function MobileTable() {
         return "bg-blue-100 text-blue-800";
     }
   };
-  const users = data?.applications;
+  const users = data?.users;
   return (
     <div
       ref={scrollRef}
@@ -50,7 +50,7 @@ export default function MobileTable() {
               <div className="mb-4 flex justify-center">
                 <img
                   className="h-20 w-20 rounded-full object-cover border-2 border-gray-200"
-                  src={user.photo.url}
+                  src={user?.student.photo.url}
                   alt={`Photo de ${user.nom}`}
                   onError={(e) => {
                     e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
@@ -75,7 +75,7 @@ export default function MobileTable() {
                       <p className="truncate text-gray-500 ">Email:</p>
                     </div>
                     <div className="inline-flex items-center text-base  text-gray-900 ">
-                      {user.emailAddress}
+                      {user.email}
                     </div>
                   </div>
                 </li>
@@ -89,21 +89,46 @@ export default function MobileTable() {
                       <p className="truncate text-gray-500 ">Niveau:</p>
                     </div>
                     <div className="inline-flex items-center text-base  text-gray-900 ">
-                      {user.studyPeriod}
+                      {user?.student.studyPeriod}
                     </div>
                   </div>
                 </li>
               </ul>
             )}
-            {visibleColumns.dateInscription && (
+            {visibleColumns.mention && (
               <ul className="mb-2 max-w-md  ">
                 <li className="pb-3 sm:pb-4">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse">
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-gray-500 "> Inscription:</p>
+                      <p className="truncate text-gray-500 ">Mention :</p>
                     </div>
                     <div className="inline-flex items-center text-base  text-gray-900 ">
-                      {formatDate(user.createdAt)}
+                      {user?.student?.funding ===
+                      "BEL : Business, Entrepreneuriat et Leadership"
+                        ? "BEL"
+                        : "BEN"}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            )}
+            {visibleColumns.ecolage && (
+              <ul className="mb-2 max-w-md  ">
+                <li className="pb-3 sm:pb-4">
+                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-gray-500 ">
+                        Frais scolaires:
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base  text-gray-900 ">
+                      <div className="flex items-center space-x-1">
+                        <span className="text-2xl font-bold text-blue-600">
+                          {" "}
+                          {user?.schoolFees}
+                        </span>
+                        <span className="text-sm text-gray-500">/ 10</span>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -121,7 +146,7 @@ export default function MobileTable() {
                         user.status
                       )}`}
                     >
-                      {user.status === "unapproved" ? "Non validé" : "validé"}
+                      {user.status === "unpaid" ? "Non payé" : "Payé"}
                     </div>
                   </div>
                 </li>
