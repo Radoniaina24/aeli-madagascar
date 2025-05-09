@@ -11,6 +11,9 @@ export default function HeaderHome() {
     setIsMenuOpen(!isMenuOpen);
   };
   const user: any = useSelector(selectUser);
+  // console.log(user);
+  const userRole = user?.user?.role || user?.role;
+  const isAdmin = userRole === "admin" || userRole === "super_admin";
   return (
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -41,11 +44,7 @@ export default function HeaderHome() {
           {user ? (
             <>
               <Link
-                href={`${
-                  user?.user?.role === "admin" || user?.role === "admin"
-                    ? "/admin"
-                    : "/student"
-                }`}
+                href={isAdmin ? "/admin" : "/student"}
                 className="bg-green-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-green-800 transition duration-300 whitespace-nowrap cursor-pointer"
               >
                 <FaUser className="mr-1 inline-block" /> Mon Compte
