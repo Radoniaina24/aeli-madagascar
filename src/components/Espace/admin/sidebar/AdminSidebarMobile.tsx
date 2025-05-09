@@ -44,7 +44,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
         {
           icon: <FaRegAddressBook className="text-lg text-purple-500" />,
           label: "Liste",
-          href: "/admin/#",
+          href: "/admin/users",
         },
       ],
     },
