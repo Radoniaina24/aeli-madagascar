@@ -5,13 +5,6 @@ export const usersAPI = createApi({
   tagTypes: ["user"],
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
-    // prepareHeaders: (headers, { getState }) => {
-    //   const token = (getState() as any).auth.token; // Récupération du token JWT depuis Redux
-    //   if (token) {
-    //     headers.set("Authorization", `Bearer ${token}`);
-    //   }
-    //   return headers;
-    // },
     credentials: "include", // S'assurer que les cookies sont envoyés avec la requête
   }),
   keepUnusedDataFor: 30,
@@ -55,6 +48,16 @@ export const usersAPI = createApi({
       },
       providesTags: ["user"],
     }),
+    updateUserCandidate: builder.mutation({
+      query: ({ data, id }) => {
+        return {
+          url: `/user/update/candidate/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
     addUser: builder.mutation({
       query: (obj) => {
         return {
@@ -96,4 +99,5 @@ export const {
   useUpdateUserMutation,
   useGetAllUserQuery,
   useGetAllUserCandidateQuery,
+  useUpdateUserCandidateMutation,
 } = usersAPI;

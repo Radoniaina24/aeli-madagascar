@@ -48,7 +48,7 @@ function UserProvider({ children }: { children: React.ReactNode }) {
     limit: itemsPerPage,
     page: currentPage,
   });
-  console.log(data);
+  // console.log(data);
   useEffect(() => {
     setCurrentPage(1);
     refetch();

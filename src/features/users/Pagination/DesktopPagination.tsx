@@ -7,7 +7,7 @@ export default function DesktopPagination() {
   const { setItemsPerPage, setCurrentPage, itemsPerPage, currentPage, data } =
     useUsersContext();
   const indexOfLastItem = currentPage * itemsPerPage;
-  const results = data?.totalApplications;
+  const results = data?.totalUsers;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = 1;
   const totalPages = data?.totalPages;
