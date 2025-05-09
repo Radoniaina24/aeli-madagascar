@@ -17,8 +17,8 @@ const StatusFilter: React.FC<StatusFilterProps> = ({ className = "" }) => {
         onChange={(e) => setStatusFilter(e.target.value)}
       >
         <option value="all">Tous les statuts</option>
-        <option value="approved">Validé</option>
-        <option value="unapproved">Non validé</option>
+        <option value="paid">Payé</option>
+        <option value="unpaid">Non payé</option>
       </select>
       <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
         <i className="fas fa-chevron-down text-gray-400" />

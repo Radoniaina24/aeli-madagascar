@@ -36,6 +36,16 @@ export const usersAPI = createApi({
       },
       providesTags: ["user"],
     }),
+    getAllUserCandidate: builder.query({
+      query: (params) => {
+        return {
+          url: `user/candidate`,
+          method: "GET",
+          params,
+        };
+      },
+      providesTags: ["user"],
+    }),
     getUserById: builder.query({
       query: (id) => {
         return {
@@ -85,4 +95,5 @@ export const {
   useDeleteUserMutation,
   useUpdateUserMutation,
   useGetAllUserQuery,
+  useGetAllUserCandidateQuery,
 } = usersAPI;

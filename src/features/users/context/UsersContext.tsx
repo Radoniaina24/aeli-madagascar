@@ -1,6 +1,9 @@
 "use client";
 import { useGetAllCandidateQuery } from "@/lib/api/applicationApi";
-import { useGetAllUserQuery } from "@/lib/api/userApi";
+import {
+  useGetAllUserCandidateQuery,
+  useGetAllUserQuery,
+} from "@/lib/api/userApi";
 import React, { createContext, useContext, useEffect, useState } from "react";
 const UserContext = createContext<any | null>(null);
 function UserProvider({ children }: { children: React.ReactNode }) {
@@ -14,12 +17,11 @@ function UserProvider({ children }: { children: React.ReactNode }) {
     nom: true,
     prenom: true,
     email: true,
-    dateInscription: true,
-    diplome: false,
     niveau: true,
     mention: true,
     actions: true,
     status: true,
+    ecolage: true,
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -37,18 +39,20 @@ function UserProvider({ children }: { children: React.ReactNode }) {
       setSortDirection("asc");
     }
   };
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, statusFilter]);
+
   // Pagination
-  const { data, isLoading, error } = useGetAllUserQuery({
+  const { data, isLoading, error, refetch } = useGetAllUserCandidateQuery({
     search: searchTerm,
-    // status: statusFilter,
+    status: statusFilter,
     // sort: sortDirection,
     limit: itemsPerPage,
     page: currentPage,
   });
   console.log(data);
+  useEffect(() => {
+    setCurrentPage(1);
+    refetch();
+  }, [searchTerm, statusFilter]);
   return (
     <UserContext.Provider
       value={{
