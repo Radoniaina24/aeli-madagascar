@@ -3,61 +3,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
-import { FaRegAddressBook, FaRegUser } from "react-icons/fa";
-import { IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Image from "next/image";
-import { PiUsersThree } from "react-icons/pi";
+import { menuItems } from "./menu";
 
 interface SidebarProps {
   sidebarOpen: boolean;
 }
-
 export default function AdminSidebar({ sidebarOpen }: SidebarProps) {
   const pathname = usePathname();
-  const [isCoursesOpen, setIsCoursesOpen] = useState(false);
-
-  const toggleCoursesMenu = () => setIsCoursesOpen((prev) => !prev);
-
-  const menuItems = [
-    {
-      icon: <IoHomeOutline className="text-xl text-blue-500" />,
-      label: "Tableau de bord",
-      href: "/admin",
-    },
-    // {
-    //   icon: <IoCalendarClearOutline className="text-xl text-red-500" />,
-    //   label: "Calendrier",
-    //   href: "#",
-    // },
-    {
-      icon: <FaRegUser className="text-xl text-yellow-600" />,
-      label: "Utilisateurs",
-      subItems: [
-        {
-          icon: <IoPersonAddOutline className="text-lg text-emerald-500" />,
-          label: "Ajouter",
-          href: "/admin/#",
-        },
-        {
-          icon: <FaRegAddressBook className="text-lg text-purple-500" />,
-          label: "Liste",
-          href: "/admin/users",
-        },
-      ],
-    },
-    {
-      icon: <PiUsersThree className="text-xl text-pink-500" />,
-      label: "Candidats",
-      href: "/admin/candidate",
-    },
-    // {
-    //   icon: <BsCalendarCheckFill className="text-xl text-green-500" />,
-    //   label: "Corrigés",
-    //   href: "#",
-    // },
-  ];
-
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
+  const toggleSubmenu = (label: string) => {
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
   return (
     <aside
       className={`${
@@ -76,14 +37,13 @@ export default function AdminSidebar({ sidebarOpen }: SidebarProps) {
               className="rouded-full px-2"
             />
           </div>
-
           <ul className="space-y-2 px-2 mt-10 text-sm">
             {menuItems.map((item, index) => (
               <li key={index}>
                 {item.subItems ? (
                   <>
                     <button
-                      onClick={toggleCoursesMenu}
+                      onClick={() => toggleSubmenu(item.label)}
                       className={`${
                         sidebarOpen ? "justify-between" : "justify-center"
                       } flex items-center w-full p-2 rounded-lg hover:text-black transition-colors`}
@@ -95,13 +55,13 @@ export default function AdminSidebar({ sidebarOpen }: SidebarProps) {
                         )}
                       </div>
                       {sidebarOpen &&
-                        (isCoursesOpen ? (
+                        (openSubmenus[item.label] ? (
                           <FiChevronUp className="text-gray-400" />
                         ) : (
                           <FiChevronDown className="text-gray-400" />
                         ))}
                     </button>
-                    {isCoursesOpen && sidebarOpen && (
+                    {openSubmenus[item.label] && sidebarOpen && (
                       <ul className="ml-10 mt-1 space-y-1">
                         {item.subItems.map((sub, subIndex) => (
                           <li key={subIndex}>
@@ -123,7 +83,7 @@ export default function AdminSidebar({ sidebarOpen }: SidebarProps) {
                   </>
                 ) : (
                   <Link
-                    href={item.href}
+                    href={item.href!}
                     className={`${
                       sidebarOpen ? "justify-start" : "justify-center"
                     } flex items-center p-2 rounded-lg hover:text-black transition-colors`}

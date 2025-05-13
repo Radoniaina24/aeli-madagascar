@@ -154,16 +154,9 @@ export default function MobileTable() {
             )}
             {visibleColumns.actions && (
               <div className="mt-4 gap-2 flex justify-end">
-                {user.status === "unapproved" ? (
-                  <>
-                    {" "}
-                    <ViewUserCandidate user={user} />
-                    <EditUserCandidate user={user} />
-                    <DeleteUserCandidate user={user} />
-                  </>
-                ) : (
-                  ""
-                )}
+                <ViewUserCandidate user={user} />
+                <EditUserCandidate user={user} />
+                <DeleteUserCandidate user={user} />
               </div>
             )}
           </div>

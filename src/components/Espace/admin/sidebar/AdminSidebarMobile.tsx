@@ -1,19 +1,10 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
-import { IoClose, IoHomeOutline, IoPersonAddOutline } from "react-icons/io5";
-import {
-  FiHome,
-  FiUsers,
-  FiSettings,
-  FiChevronDown,
-  FiChevronUp,
-} from "react-icons/fi";
-import { FaRegAddressBook, FaRegUser } from "react-icons/fa";
-import { PiUsersThree } from "react-icons/pi";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Image from "next/image";
+import { menuItems } from "./menu";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -22,39 +13,13 @@ interface SidebarProps {
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   const pathname = usePathname();
-  const [isCoursesOpen, setIsCoursesOpen] = useState(false);
-
-  const toggleCoursesMenu = () => setIsCoursesOpen((prev) => !prev);
-
-  const menuItems = [
-    {
-      icon: <IoHomeOutline className="text-xl text-blue-500" />,
-      label: "Tableau de bord",
-      href: "/admin",
-    },
-    {
-      icon: <FaRegUser className="text-xl text-yellow-600" />,
-      label: "Utilisateurs",
-      subItems: [
-        {
-          icon: <IoPersonAddOutline className="text-lg text-emerald-500" />,
-          label: "Ajouter",
-          href: "/admin/#",
-        },
-        {
-          icon: <FaRegAddressBook className="text-lg text-purple-500" />,
-          label: "Liste",
-          href: "/admin/users",
-        },
-      ],
-    },
-    {
-      icon: <PiUsersThree className="text-xl text-pink-500" />,
-      label: "Candidats",
-      href: "/admin/candidate",
-    },
-  ];
-
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
+  const toggleSubmenu = (label: string) => {
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
   return (
     <>
       {/* Mobile sidebar */}
@@ -82,7 +47,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                       {item.subItems ? (
                         <>
                           <button
-                            onClick={toggleCoursesMenu}
+                            onClick={() => toggleSubmenu(item.label)}
                             className={`${
                               sidebarOpen ? "justify-between" : "justify-center"
                             } flex items-center w-full p-2 rounded-lg hover:text-black transition-colors`}
@@ -94,19 +59,18 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                               )}
                             </div>
                             {sidebarOpen &&
-                              (isCoursesOpen ? (
+                              (openSubmenus[item.label] ? (
                                 <FiChevronUp className="text-gray-400" />
                               ) : (
                                 <FiChevronDown className="text-gray-400" />
                               ))}
                           </button>
-                          {isCoursesOpen && sidebarOpen && (
+                          {openSubmenus[item.label] && sidebarOpen && (
                             <ul className="ml-10 mt-1 space-y-1">
                               {item.subItems.map((sub, subIndex) => (
                                 <li key={subIndex}>
                                   <Link
                                     href={sub.href}
-                                    onClick={() => setSidebarOpen(false)}
                                     className={`flex items-center gap-2 py-1 px-2 text-sm text-gray-600 rounded hover:bg-gray-100 ${
                                       pathname === sub.href
                                         ? "font-semibold text-black"
@@ -123,8 +87,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                         </>
                       ) : (
                         <Link
-                          href={item.href}
-                          onClick={() => setSidebarOpen(false)}
+                          href={item.href!}
                           className={`${
                             sidebarOpen ? "justify-start" : "justify-center"
                           } flex items-center p-2 rounded-lg hover:text-black transition-colors`}
