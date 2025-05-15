@@ -59,6 +59,18 @@ export const usersAPI = createApi({
       },
       invalidatesTags: ["user"],
     }),
+
+    updateUser: builder.mutation({
+      query: ({ data, id }) => {
+        return {
+          url: `/user/update/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
+
     addUser: builder.mutation({
       query: (obj) => {
         return {
@@ -91,4 +103,6 @@ export const {
   useGetAllUserCandidateQuery,
   useUpdateUserCandidateMutation,
   useDeleteUserCandidateMutation,
+
+  useUpdateUserMutation,
 } = usersAPI;

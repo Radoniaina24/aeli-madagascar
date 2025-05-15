@@ -2,7 +2,7 @@ import Users from "@/features/users";
 import { UserProvider } from "@/features/users/context/UsersContext";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Users - AELI",
+  title: "Candidats - AELI",
 };
 
 export default async function page() {

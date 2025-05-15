@@ -89,7 +89,7 @@ export default function MobileTable() {
                       <p className="truncate text-gray-500 ">Niveau:</p>
                     </div>
                     <div className="inline-flex items-center text-base  text-gray-900 ">
-                      {user?.student.studyPeriod}
+                      {user?.student?.studyPeriod}
                     </div>
                   </div>
                 </li>

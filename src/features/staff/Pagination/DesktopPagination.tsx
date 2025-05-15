@@ -1,11 +1,11 @@
 import React from "react";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useUsersContext } from "../context/UsersContext";
+import { useStaffContext } from "../context/StaffContext";
 
 export default function DesktopPagination() {
   const { setItemsPerPage, setCurrentPage, itemsPerPage, currentPage, data } =
-    useUsersContext();
+    useStaffContext();
   const indexOfLastItem = currentPage * itemsPerPage;
   const results = data?.totalUsers;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

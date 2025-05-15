@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import ModalDetailsCandidate from "./ModalDetailsCandidate";
 
-export default function ViewUserCandidate({ user }: { user: any }) {
+export default function ViewUserStaff({ user }: { user: any }) {
   const [open, setOpen] = useState<boolean>(false);
   const handleClose = () => {
     setOpen(false);

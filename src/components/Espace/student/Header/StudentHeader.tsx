@@ -15,7 +15,7 @@ interface StudentHeaderProps {
 }
 
 const menuItems = [
-  { label: "Profil", href: "/student", icon: <TbUserPentagon /> },
+  { label: "Profil", href: "/student/profil", icon: <TbUserPentagon /> },
   { label: "Allez au site", href: "/", icon: <FaHome /> },
 ];
 
