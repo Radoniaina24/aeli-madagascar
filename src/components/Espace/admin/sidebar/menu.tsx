@@ -1,6 +1,17 @@
 import React, { JSX } from "react";
-import { FaCalendarCheck, FaRegAddressBook, FaRegUser } from "react-icons/fa";
+import { BsJournalBookmark } from "react-icons/bs";
+import {
+  FaBook,
+  FaBusinessTime,
+  FaCalendarCheck,
+  FaLayerGroup,
+  FaLeaf,
+  FaRegAddressBook,
+  FaRegUser,
+} from "react-icons/fa";
+import { GiDiploma } from "react-icons/gi";
 import { IoBookOutline, IoHomeOutline } from "react-icons/io5";
+import { MdSchool } from "react-icons/md";
 import { PiUsersThree } from "react-icons/pi";
 
 export interface MenuItem {
@@ -38,52 +49,244 @@ export const getMenuItems = (userRole: string): MenuItem[] => {
       ],
     },
   ];
-  if (userRole === "super_admin" || userRole === "admin") {
+
+  if (userRole === "super_admin") {
     items.push({
       icon: <IoBookOutline className="text-xl text-purple-600" />,
       label: "Cours",
       children: [
         {
-          label: "Licence",
+          label: "BEN", //ben
+          icon: <FaBusinessTime className="text-xl text-purple-600" />,
           children: [
             {
-              label: "L1",
+              label: "Licence",
+              icon: <GiDiploma className="text-xl text-red-500" />,
               children: [
-                { label: "S1", href: "/admin/cours/licence/l1/s1" },
-                { label: "S2", href: "/admin/cours/licence/l1/s2" },
+                {
+                  label: "L1",
+                  icon: <FaLayerGroup className="text-lg text-blue-600" />,
+                  children: [
+                    {
+                      label: "S1",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/licence/l1/s1",
+                    },
+                    {
+                      label: "S2",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/licence/l1/s2",
+                    },
+                  ],
+                },
+                {
+                  label: "L2",
+                  icon: <FaLayerGroup className="text-lg text-blue-700" />,
+                  children: [
+                    {
+                      label: "S3",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/licence/l2/s3",
+                    },
+                    {
+                      label: "S4",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/licence/l2/s4",
+                    },
+                  ],
+                },
+                {
+                  label: "L3",
+                  icon: <FaLayerGroup className="text-lg text-blue-800" />,
+                  children: [
+                    {
+                      label: "S5",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/licence/l3/s5",
+                    },
+                    {
+                      label: "S6",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/licence/l3/s6",
+                    },
+                  ],
+                },
               ],
             },
             {
-              label: "L2",
+              label: "Master",
+              icon: <GiDiploma className="text-xl text-green-600" />,
               children: [
-                { label: "S3", href: "/admin/cours/licence/l2/s3" },
-                { label: "S4", href: "/admin/cours/licence/l2/s4" },
-              ],
-            },
-            {
-              label: "L3",
-              children: [
-                { label: "S5", href: "/admin/cours/licence/l3/s5" },
-                { label: "S6", href: "/admin/cours/licence/l3/s6" },
+                {
+                  label: "M1",
+                  icon: <MdSchool className="text-lg text-green-700" />,
+                  children: [
+                    {
+                      label: "S1",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/master/m1/s1",
+                    },
+                    {
+                      label: "S2",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/master/m1/s2",
+                    },
+                  ],
+                },
+                {
+                  label: "M2",
+                  icon: <MdSchool className="text-lg text-green-800" />,
+                  children: [
+                    {
+                      label: "S3",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/master/m2/s3",
+                    },
+                    {
+                      label: "S4",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/ben/master/m2/s4",
+                    },
+                  ],
+                },
               ],
             },
           ],
         },
         {
-          label: "Master",
+          label: "BEL",
+          icon: <FaLeaf className="text-xl text-green-600" />,
           children: [
             {
-              label: "M1",
+              label: "Licence",
+              icon: <GiDiploma className="text-xl text-red-500" />,
               children: [
-                { label: "S1", href: "/admin/cours/master/m1/s1" },
-                { label: "S2", href: "/admin/cours/master/m1/s2" },
+                {
+                  label: "L1",
+                  icon: <FaLayerGroup className="text-lg text-blue-600" />,
+                  children: [
+                    {
+                      label: "S1",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/licence/l1/s1",
+                    },
+                    {
+                      label: "S2",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/licence/l1/s2",
+                    },
+                  ],
+                },
+                {
+                  label: "L2",
+                  icon: <FaLayerGroup className="text-lg text-blue-700" />,
+                  children: [
+                    {
+                      label: "S3",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/licence/l2/s3",
+                    },
+                    {
+                      label: "S4",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/licence/l2/s4",
+                    },
+                  ],
+                },
+                {
+                  label: "L3",
+                  icon: <FaLayerGroup className="text-lg text-blue-800" />,
+                  children: [
+                    {
+                      label: "S5",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/licence/l3/s5",
+                    },
+                    {
+                      label: "S6",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/licence/l3/s6",
+                    },
+                  ],
+                },
               ],
             },
             {
-              label: "M2",
+              label: "Master",
+              icon: <GiDiploma className="text-xl text-green-600" />,
               children: [
-                { label: "S3", href: "/admin/cours/master/m2/s3" },
-                { label: "S4", href: "/admin/cours/master/m2/s4" },
+                {
+                  label: "M1",
+                  icon: <MdSchool className="text-lg text-green-700" />,
+                  children: [
+                    {
+                      label: "S1",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/master/m1/s1",
+                    },
+                    {
+                      label: "S2",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/bel/master/m1/s2",
+                    },
+                  ],
+                },
+                {
+                  label: "M2",
+                  icon: <MdSchool className="text-lg text-green-800" />,
+                  children: [
+                    {
+                      label: "S3",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/master/m2/s3",
+                    },
+                    {
+                      label: "S4",
+                      icon: (
+                        <BsJournalBookmark className="text-md text-gray-700" />
+                      ),
+                      href: "/admin/cours/master/m2/s4",
+                    },
+                  ],
+                },
               ],
             },
           ],

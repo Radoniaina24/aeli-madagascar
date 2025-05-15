@@ -25,12 +25,12 @@ export default function FormStep3() {
   const course = [
     {
       label: "BEL : Business, Entrepreneuriat et Leadership",
-      value: "BEL : Business, Entrepreneuriat et Leadership",
+      value: "BEL",
     },
 
     {
-      label: "BEN : BTP et Energie Renouvelable",
-      value: "BEN : BTP et Energie Renouvelable",
+      label: "BEN : Energie Renouvelable",
+      value: "BEN",
     },
   ];
   const tuitionFees = [
