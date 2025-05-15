@@ -7,7 +7,7 @@ export default function ViewUserCandidate({ user }: { user: any }) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <div className="hidden md:block">

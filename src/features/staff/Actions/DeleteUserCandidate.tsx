@@ -1,19 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Modal from "./Modal";
-import {
-  FaExclamationTriangle,
-  FaSpinner,
-  FaTrash,
-  FaTrashAlt,
-} from "react-icons/fa";
+import { FaExclamationTriangle, FaSpinner, FaTrash } from "react-icons/fa";
 
 import toast, { Toaster } from "react-hot-toast";
-import { useDeleteUserCandidateMutation } from "@/lib/api/userApi";
+import { useDeleteUserMutation } from "@/lib/api/userApi";
 
-export default function DeleteUserCandidate({ user }: { user: any }) {
-  const [deleteUserCandidate, { isLoading, error }] =
-    useDeleteUserCandidateMutation();
+export default function DeleteUserStaff({ user }: { user: any }) {
+  const [deleteUser, { isLoading, error }] = useDeleteUserMutation();
   const ErrorNotification = (msg: string) => toast.error(msg);
   const SuccessNotification = (msg: string) => toast.success(msg);
   const [open, setOpen] = useState<boolean>(false);
@@ -22,7 +16,7 @@ export default function DeleteUserCandidate({ user }: { user: any }) {
   };
   async function handleDelete(id: string) {
     try {
-      const response = await deleteUserCandidate(id).unwrap();
+      const response = await deleteUser(id).unwrap();
       console.log(response);
       SuccessNotification(response?.message);
       setOpen(false);
@@ -38,9 +32,7 @@ export default function DeleteUserCandidate({ user }: { user: any }) {
   }
 
   return (
-    <>
-      <Toaster />
-
+    <div>
       <div className="hidden md:block">
         <button
           className=" text-red-600 flex items-center gap-2  text-sm px-1 py-1 rounded-lg cursor-pointer whitespace-nowrap"
@@ -115,6 +107,6 @@ export default function DeleteUserCandidate({ user }: { user: any }) {
           </div>
         </div>
       </Modal>
-    </>
+    </div>
   );
 }

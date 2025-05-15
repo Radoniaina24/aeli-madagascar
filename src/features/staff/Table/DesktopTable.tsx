@@ -1,8 +1,9 @@
 import React from "react";
 import dayjs from "dayjs";
-import DeleteUserCandidate from "../Actions/DeleteUserCandidate";
+
 import { useStaffContext } from "../context/StaffContext";
 import EditUserStaff from "../Actions/EditUserCandidate";
+import DeleteUserStaff from "../Actions/DeleteUserCandidate";
 
 export default function DesktopTable() {
   const { visibleColumns, handleSort, sortColumn, sortDirection, data } =
@@ -118,7 +119,7 @@ export default function DesktopTable() {
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex  items-center justify-center  ">
                     <EditUserStaff user={user} />
-                    <DeleteUserCandidate user={user} />
+                    <DeleteUserStaff user={user} />
                   </div>
                 </td>
               )}

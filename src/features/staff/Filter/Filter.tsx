@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import StatusFilter from "./StatusFilter";
 import VisibleColumn from "./VisibleColumn";
+import AddUserStaff from "../Actions/AddStaff";
 export default function Filter() {
   return (
     <div className="p-6 border-b border-gray-200">
@@ -9,6 +10,7 @@ export default function Filter() {
         <h1 className="text-2xl font-bold text-gray-900 mb-4 md:mb-0">
           Liste des utilisateurs
         </h1>
+        <AddUserStaff />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Barre de recherche */}

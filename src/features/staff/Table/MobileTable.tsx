@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import dayjs from "dayjs";
-import DeleteUserCandidate from "../Actions/DeleteUserCandidate";
 import { useStaffContext } from "../context/StaffContext";
 import EditUserStaff from "../Actions/EditUserCandidate";
+import DeleteUserStaff from "../Actions/DeleteUserCandidate";
 
 export default function MobileTable() {
   const { visibleColumns, currentPage, data } = useStaffContext();
@@ -85,7 +85,7 @@ export default function MobileTable() {
             {visibleColumns.actions && (
               <div className="mt-4 gap-2 flex justify-end">
                 <EditUserStaff user={user} />
-                <DeleteUserCandidate user={user} />
+                <DeleteUserStaff user={user} />
               </div>
             )}
           </div>

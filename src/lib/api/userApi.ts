@@ -74,7 +74,7 @@ export const usersAPI = createApi({
     addUser: builder.mutation({
       query: (obj) => {
         return {
-          url: `users/register`,
+          url: `user/register`,
           method: "POST",
           body: obj,
         };
@@ -92,6 +92,16 @@ export const usersAPI = createApi({
       },
       invalidatesTags: ["user"],
     }),
+    deleteUser: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/user/delete/${id}`,
+          method: "DELETE",
+          body: id,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
@@ -103,6 +113,6 @@ export const {
   useGetAllUserCandidateQuery,
   useUpdateUserCandidateMutation,
   useDeleteUserCandidateMutation,
-
   useUpdateUserMutation,
+  useDeleteUserMutation,
 } = usersAPI;
