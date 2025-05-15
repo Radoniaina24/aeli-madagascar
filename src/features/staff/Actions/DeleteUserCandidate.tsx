@@ -33,6 +33,7 @@ export default function DeleteUserStaff({ user }: { user: any }) {
 
   return (
     <div>
+      <Toaster />
       <div className="hidden md:block">
         <button
           className=" text-red-600 flex items-center gap-2  text-sm px-1 py-1 rounded-lg cursor-pointer whitespace-nowrap"
