@@ -107,7 +107,7 @@ export default function EditUserCandidate({ user }: { user: any }) {
             error={formik.errors.schoolFees}
             touched={formik.touched.schoolFees}
             // placeholder="Ex: 7.5"
-            min={1}
+            min={0}
             max={10}
             onChange={formik.handleChange}
           />
