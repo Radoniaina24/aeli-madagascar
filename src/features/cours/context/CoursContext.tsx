@@ -1,21 +1,23 @@
 "use client";
-import {
-  useGetAllUserCandidateQuery,
-  useGetAllUserQuery,
-} from "@/lib/api/userApi";
+import { useGetAllCoursQuery } from "@/lib/api/coursApi";
 import React, { createContext, useContext, useEffect, useState } from "react";
-const StaffContext = createContext<any | null>(null);
-function StaffProvider({ children }: { children: React.ReactNode }) {
+const CoursContext = createContext<any | null>(null);
+function CoursProvider({ children }: { children: React.ReactNode }) {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [track, setTrackFilter] = useState<string>("all");
+  const [level, setLevelFilter] = useState<string>("all");
+  const [semester, setSemesterFilter] = useState<string>("all");
+  const [year, setYearFilter] = useState<string>("all");
+
   const [isColumnMenuOpen, setIsColumnMenuOpen] = useState<boolean>(false);
   const [sortColumn, setSortColumn] = useState<string>("nom");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [visibleColumns, setVisibleColumns] = useState({
-    nom: true,
-    prenom: true,
-    email: true,
-    role: true,
+    title: true,
+    track: true,
+    level: true,
+    year: true,
+    semester: true,
+    description: true,
     actions: true,
   });
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,34 +28,26 @@ function StaffProvider({ children }: { children: React.ReactNode }) {
       [column]: !visibleColumns[column],
     });
   };
-  const handleSort = (column: string) => {
-    if (sortColumn === column) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortColumn(column);
-      setSortDirection("asc");
-    }
-  };
 
   // Pagination
-  const { data, isLoading, error, refetch } = useGetAllUserQuery({
-    search: searchTerm,
-    role: statusFilter,
+  const { data, isLoading, error, refetch } = useGetAllCoursQuery({
     limit: itemsPerPage,
     page: currentPage,
+    track,
+    level,
+    year,
+    semester,
   });
   // console.log(data);
   useEffect(() => {
     setCurrentPage(1);
     refetch();
-  }, [searchTerm, statusFilter]);
+  }, [searchTerm]);
   return (
-    <StaffContext.Provider
+    <CoursContext.Provider
       value={{
         searchTerm,
         setSearchTerm,
-        statusFilter,
-        setStatusFilter,
         isColumnMenuOpen,
         setIsColumnMenuOpen,
         visibleColumns,
@@ -61,9 +55,6 @@ function StaffProvider({ children }: { children: React.ReactNode }) {
         handleColumnToggle,
         sortColumn,
         setSortColumn,
-        sortDirection,
-        setSortDirection,
-        handleSort,
         isLoading,
         data,
         error,
@@ -71,17 +62,25 @@ function StaffProvider({ children }: { children: React.ReactNode }) {
         setCurrentPage,
         itemsPerPage,
         setItemsPerPage,
+        track,
+        setTrackFilter,
+        level,
+        setLevelFilter,
+        year,
+        setYearFilter,
+        semester,
+        setSemesterFilter,
       }}
     >
       {children}
-    </StaffContext.Provider>
+    </CoursContext.Provider>
   );
 }
 
-function useStaffContext() {
-  const context = useContext(StaffContext);
+function useCoursContext() {
+  const context = useContext(CoursContext);
   if (context === undefined)
-    throw new Error("StaffContext was used outside the CandidateProvider");
+    throw new Error("CoursContext was used outside the CandidateProvider");
   return context;
 }
-export { StaffProvider, useStaffContext };
+export { CoursProvider, useCoursContext };

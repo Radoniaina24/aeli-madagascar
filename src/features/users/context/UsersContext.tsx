@@ -87,7 +87,7 @@ function UserProvider({ children }: { children: React.ReactNode }) {
 function useUsersContext() {
   const context = useContext(UserContext);
   if (context === undefined)
-    throw new Error("CandidateContext was used outside the CandidateProvider");
+    throw new Error("UserContext was used outside the CandidateProvider");
   return context;
 }
 export { UserProvider, useUsersContext };
