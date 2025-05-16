@@ -21,7 +21,7 @@ export default function Table() {
       ) : (
         <>
           <DesktopTable />
-          {/* <MobileTable /> */}
+          <MobileTable />
         </>
       )}
     </div>

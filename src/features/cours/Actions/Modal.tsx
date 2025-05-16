@@ -46,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
             exit={{ opacity: 0, y: -50 }}
           >
             <div
-              className="bg-white w-full max-w-md sm:rounded-2xl shadow-lg relative overflow-hidden"
+              className="bg-white w-full max-w-xl sm:rounded-2xl shadow-lg relative overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}

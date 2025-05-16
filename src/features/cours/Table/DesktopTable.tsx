@@ -1,8 +1,8 @@
 import React from "react";
-import dayjs from "dayjs";
-import EditUserStaff from "../Actions/EditUserCandidate";
-import DeleteUserStaff from "../Actions/DeleteUserCandidate";
 import { useCoursContext } from "../context/CoursContext";
+import DeleteCours from "../Actions/DeleteCours";
+import EditCours from "../Actions/EditCours";
+import ViewCours from "../Actions/ViewCours";
 
 export default function DesktopTable() {
   const { visibleColumns, data } = useCoursContext();
@@ -106,8 +106,9 @@ export default function DesktopTable() {
               {visibleColumns.actions && (
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex  items-center justify-center  ">
-                    <EditUserStaff user={item} />
-                    <DeleteUserStaff user={item} />
+                    <ViewCours user={item} />
+                    <EditCours user={item} />
+                    <DeleteCours user={item} />
                   </div>
                 </td>
               )}

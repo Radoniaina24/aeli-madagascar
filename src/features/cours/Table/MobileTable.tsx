@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import dayjs from "dayjs";
-import EditUserStaff from "../Actions/EditUserCandidate";
-import DeleteUserStaff from "../Actions/DeleteUserCandidate";
 import { useCoursContext } from "../context/CoursContext";
+import DeleteCours from "../Actions/DeleteCours";
+import EditCours from "../Actions/EditCours";
+import ViewCours from "../Actions/ViewCours";
 
 export default function MobileTable() {
   const { visibleColumns, currentPage, data } = useCoursContext();
@@ -28,7 +29,7 @@ export default function MobileTable() {
         return "bg-blue-100 text-blue-800";
     }
   };
-  const users = data?.users;
+  const cours = data?.cours;
   return (
     <div
       ref={scrollRef}
@@ -40,36 +41,60 @@ export default function MobileTable() {
         overflowY: "auto",
       }}
     >
-      {users.length > 0 ? (
-        users.map((user: any) => (
-          <div key={user._id} className="bg-white p-4 border-b border-gray-200">
-            {visibleColumns.email && (
+      {cours.length > 0 ? (
+        cours.map((item: any) => (
+          <div key={item._id} className="bg-white p-4 border-b border-gray-200">
+            {visibleColumns.track && (
               <ul className="mb-2 max-w-md  ">
                 <li className="pb-3 sm:pb-4">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse">
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-gray-500 ">Email:</p>
+                      <p className="truncate text-gray-500 ">Mention</p>
                     </div>
                     <div className="inline-flex items-center text-base  text-gray-900 ">
-                      {user.email}
+                      {item.track}
                     </div>
                   </div>
                 </li>
               </ul>
             )}
-            {visibleColumns.role && (
+            {visibleColumns.level && (
               <ul className="mb-2 max-w-md  ">
                 <li className="pb-3 sm:pb-4">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse">
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-gray-500 "> Rôle:</p>
+                      <p className="truncate text-gray-500 ">Diplôme</p>
                     </div>
-                    <div
-                      className={` px-2 inline-flex items-center text-xs leading-5 font-semibold rounded-full  text-gray-900 ${getStatusClass(
-                        user.role
-                      )}`}
-                    >
-                      {user.role === "admin" ? "Admin" : "Super admin"}
+                    <div className="inline-flex items-center text-base  text-gray-900 ">
+                      {item.level}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            )}
+            {visibleColumns.year && (
+              <ul className="mb-2 max-w-md  ">
+                <li className="pb-3 sm:pb-4">
+                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-gray-500 ">Niveau</p>
+                    </div>
+                    <div className="inline-flex items-center text-base  text-gray-900 ">
+                      {item.year}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            )}
+            {visibleColumns.semester && (
+              <ul className="mb-2 max-w-md  ">
+                <li className="pb-3 sm:pb-4">
+                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-gray-500 ">Semestre</p>
+                    </div>
+                    <div className="inline-flex items-center text-base  text-gray-900 ">
+                      {item.semester}
                     </div>
                   </div>
                 </li>
@@ -77,8 +102,9 @@ export default function MobileTable() {
             )}
             {visibleColumns.actions && (
               <div className="mt-4 gap-2 flex justify-end">
-                <EditUserStaff user={user} />
-                <DeleteUserStaff user={user} />
+                <ViewCours user={item} />
+                <EditCours user={item} />
+                <DeleteCours user={item} />
               </div>
             )}
           </div>

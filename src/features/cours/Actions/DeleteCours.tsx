@@ -5,9 +5,10 @@ import { FaExclamationTriangle, FaSpinner, FaTrash } from "react-icons/fa";
 
 import toast, { Toaster } from "react-hot-toast";
 import { useDeleteUserMutation } from "@/lib/api/userApi";
+import { useDeleteCoursMutation } from "@/lib/api/coursApi";
 
-export default function DeleteUserStaff({ user }: { user: any }) {
-  const [deleteUser, { isLoading, error }] = useDeleteUserMutation();
+export default function DeleteCours({ user }: { user: any }) {
+  const [deleteCours, { isLoading, error }] = useDeleteCoursMutation();
   const ErrorNotification = (msg: string) => toast.error(msg);
   const SuccessNotification = (msg: string) => toast.success(msg);
   const [open, setOpen] = useState<boolean>(false);
@@ -16,7 +17,7 @@ export default function DeleteUserStaff({ user }: { user: any }) {
   };
   async function handleDelete(id: string) {
     try {
-      const response = await deleteUser(id).unwrap();
+      const response = await deleteCours(id).unwrap();
       console.log(response);
       SuccessNotification(response?.message);
       setOpen(false);
@@ -64,11 +65,8 @@ export default function DeleteUserStaff({ user }: { user: any }) {
             Confirmer la suppression
           </h3>
           <p className="text-sm text-gray-500 mb-6">
-            Êtes-vous sûr de vouloir supprimer l'utilisateur{" "}
-            <span className="font-medium">
-              "{user.lastName} {user.firstName}"
-            </span>{" "}
-            ? Cette action est irréversible.
+            Êtes-vous sûr de vouloir supprimer ce cours ? Cette action est
+            irréversible.
           </p>
           <div className="flex flex-col-reverse sm:flex-row justify-center gap-3 sm:gap-4">
             {isLoading ? (
